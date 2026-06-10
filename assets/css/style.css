@@ -3210,16 +3210,7 @@ select.form-control option {
     justify-content: center;
   }
 
-  /* Force large section padding to scale down on mobile */
-  section[style*="padding: 8rem"],
-  section[style*="padding: 6rem"],
-  section[style*="padding: 5rem"],
-  section[style*="padding:8rem"],
-  section[style*="padding:6rem"],
-  section[style*="padding:5rem"] {
-    padding-top: 3.5rem !important;
-    padding-bottom: 3.5rem !important;
-  }
+
 
   /* Force all inline grid layouts and forms to a beautiful 1-column stack on mobile */
   div[style*="grid-template-columns:repeat(2"],
