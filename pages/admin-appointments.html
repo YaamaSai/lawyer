@@ -1,10 +1,19 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATTORNEY</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <meta name="description" content="Manage all firm appointments, hearings, and scheduling." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>âš–ï¸</text></svg>">  <meta name="description" content="Manage all firm appointments, hearings, and scheduling." />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
@@ -65,26 +74,21 @@
       </div>
       <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
       <nav class="sidebar-nav">
-        <div class="sidebar-section-label">Main</div>
         <a href="admin-portal.html" class="sidebar-link"><i class="fa-solid fa-border-all"></i> Dashboard</a>
         <a href="admin-documents.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> Case Documents</a>
         <a href="admin-messages.html" class="sidebar-link"><i class="fa-solid fa-message"></i> Secure Messages <span class="sidebar-badge">8</span></a>
-        <div class="sidebar-section-label">Billing</div>
         <a href="admin-payments.html" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices &amp; Payments</a>
-        <div class="sidebar-section-label">Scheduling</div>
         <a href="admin-appointments.html" class="sidebar-link active"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
-        <div class="sidebar-section-label">Account</div>
         <a href="admin-settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Account Settings</a>
       </nav>
         <div class="sidebar-appearance" style="margin-top:auto;">
-          <div class="sidebar-section-label" style="margin-top:0;">Appearance</div>
           <div style="padding: 0 1rem; display: flex; gap: 0.5rem; margin-bottom: 1rem;">
             <button class="btn btn-ghost rtl-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);">RTL</button>
             <button class="btn btn-ghost theme-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);"><i class="fa-solid fa-moon"></i> Dark</button>
           </div>
         </div>
       <div class="sidebar-bottom">
-        <a href="index.html" class="sidebar-link" style="color:var(--gray-text);"><i class="fa-solid fa-right-from-bracket"></i> Secure Logout</a>
+        <a href="login.html" class="sidebar-link" style="color:#EF4444; justify-content: center;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
       </div>
     </aside>
 
@@ -92,7 +96,7 @@
     <main class="portal-main">
       <div class="portal-topbar">
         <div class="portal-topbar-left">
-          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.2rem;padding:0.4rem;margin-right:0.5rem;"><i class="fa-solid fa-bars"></i></button>
+          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.8rem;padding:0.6rem;margin-right:0.75rem;"><i class="fa-solid fa-bars"></i></button>
           <h1>Appointments</h1>
         </div>
         <div class="portal-topbar-right">
@@ -180,7 +184,7 @@
             </div>
           </div>
 
-          <!-- Past Appointments below calendar â€” same width as calendar, horizontal cards -->
+          <!-- Past Appointments below calendar - same width as calendar, horizontal cards -->
           <div class="portal-panel" style="flex:1;">
             <div class="panel-header" style="margin-bottom:1rem;">
               <h3><i class="fa-solid fa-history" style="color:var(--gold);margin-right:0.5rem;"></i> Past Appointments</h3>
@@ -265,7 +269,7 @@
               <div style="font-size:0.78rem;color:var(--gray-text);margin-bottom:0.75rem;">David Patel &bull; FC/2026/112 &bull; 60 min</div>
               <div style="display:flex;gap:0.5rem;">
                 <button class="btn btn-gold" style="flex:1;justify-content:center;font-size:0.78rem;padding:0.45rem;"><i class="fa-solid fa-video"></i> Join</button>
-                <button class="btn btn-ghost" style="justify-content:center;font-size:0.78rem;padding:0.45rem;"><i class="fa-solid fa-pen"></i> Reschedule</button>
+                <button class="btn btn-ghost" style="flex:1;justify-content:center;font-size:0.78rem;padding:0.45rem;"><i class="fa-solid fa-pen"></i> Reschedule</button>
               </div>
             </div>
             <div class="appt-card hearing-card">
@@ -318,6 +322,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 

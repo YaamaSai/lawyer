@@ -2,13 +2,22 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATTORNEY</title>
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">
   <meta name="description"
-    content="Y Sai Yashwanth Reddy â€“ Trusted solo attorney specializing in Family Law and Estate Planning. Compassionate counsel, proven results." />
+    content="Y Sai Yashwanth Reddy - Trusted solo attorney specializing in Family Law and Estate Planning. Compassionate counsel, proven results." />
   <meta name="keywords"
     content="family law attorney, estate planning lawyer, Y Sai Yashwanth Reddy, legal consultation" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -187,7 +196,7 @@
           <div class="hero-decoration-ring"></div>
           <div class="hero-portrait-frame">
             <img src="https://as1.ftcdn.net/v2/jpg/06/21/32/94/1000_F_621329409_9hVy0HARwNtHSyzWGmunsJswqApvKbWb.jpg"
-              alt="Y Sai Yashwanth Reddy â€“ Attorney at Law" />
+              alt="Y Sai Yashwanth Reddy - Attorney at Law" />
           </div>
           <div class="hero-floating-badge">
             <div class="hero-floating-badge-icon">
@@ -287,7 +296,7 @@
         <div class="about-img-wrap fade-in-left">
           <div class="about-img-frame">
             <img src="https://as1.ftcdn.net/v2/jpg/14/06/92/76/1000_F_1406927666_hwGujrDztznRoMei7pSoPlf8gHJhwkKM.jpg"
-              alt="Legal Counsel â€“ Professional Setting" />
+              alt="Legal Counsel - Professional Setting" />
           </div>
           <div class="about-credential-card">
             <h4>15+</h4>
@@ -302,7 +311,7 @@
           <p style="color:var(--gray-text);line-height:1.9;font-size:0.95rem;margin-bottom:2rem;">
             With over 15 years of dedicated practice in Family and Estate Law, Y Sai Yashwanth Reddy has built a
             reputation for relentless client advocacy and meticulous legal craftsmanship. As a solo practitioner, every
-            client receives direct, personal attention â€” not passed off to a junior associate.
+            client receives direct, personal attention - not passed off to a junior associate.
           </p>
 
           <div class="about-features">
@@ -310,7 +319,7 @@
               <div class="about-feature-icon"><i class="fa-solid fa-user-secret"></i></div>
               <div class="about-feature-text">
                 <h4>Absolute Confidentiality</h4>
-                <p>All client matters are handled with the highest level of discretion. Your case stays private â€”
+                <p>All client matters are handled with the highest level of discretion. Your case stays private -
                   always.</p>
               </div>
             </div>
@@ -382,7 +391,7 @@
           </div>
           <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Trusted Advocacy</h3>
           <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">Unwavering commitment to your rights and
-            best interests â€” in court and at the negotiating table.</p>
+            best interests - in court and at the negotiating table.</p>
         </div>
 
         <div class="glass-card fade-in delay-2" style="padding:2.5rem;text-align:center;">
@@ -402,7 +411,7 @@
           </div>
           <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Secure Client Portal</h3>
           <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">Upload documents, track progress, make
-            payments, and schedule consultations â€” all in one secure dashboard.</p>
+            payments, and schedule consultations - all in one secure dashboard.</p>
         </div>
       </div>
     </div>
@@ -463,7 +472,7 @@
             <i class="fa-solid fa-star-half-stroke"></i>
           </div>
           <p class="testimonial-quote">"The secure client portal made everything so easy. I could upload documents,
-            review my case timeline, and communicate with Mr. Reddy â€” all without having to come into the office every
+            review my case timeline, and communicate with Mr. Reddy - all without having to come into the office every
             time."</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">SM</div>
@@ -505,7 +514,7 @@
         <span class="section-label">Take Action Today</span>
         <h2>Your Legal Matter Deserves<br /><span class="gold-text">Personal Attention</span></h2>
         <p>Schedule a confidential consultation with Attorney Y Sai Yashwanth Reddy. We'll review your situation and
-          outline a clear strategy â€” with no obligation.</p>
+          outline a clear strategy - with no obligation.</p>
         <div class="cta-actions">
           <a href="contact.html" class="btn btn-gold">
             <i class="fa-solid fa-calendar-check"></i> Book Free Consultation
@@ -584,14 +593,14 @@
           </div>
           <div class="footer-contact-item">
             <i class="fa-regular fa-clock"></i>
-            <span>Monâ€“Sat: 9:00 AM â€“ 7:00 PM</span>
+            <span>Mon-Sat: 9:00 AM - 7:00 PM</span>
           </div>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <p>Â© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
+        <p>© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms</a>
@@ -605,4 +614,7 @@
 </body>
 
 </html>
+
+
+
 

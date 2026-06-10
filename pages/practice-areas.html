@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATTORNEY</title>
@@ -508,7 +517,7 @@
           <div class="pa-card-num">02</div>
           <div class="pa-card-icon"><i class="fa-solid fa-file-contract"></i></div>
           <h3>Estate Planning</h3>
-          <p>Thoughtful, comprehensive plans that protect your wealth and ensure your wishes are honoured â€” for
+          <p>Thoughtful, comprehensive plans that protect your wealth and ensure your wishes are honoured - for
             generations to come.</p>
           <div class="pa-sub-list">
             <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Will Drafting &amp; Review</div>
@@ -556,7 +565,7 @@
           <div class="pa-card-num">05</div>
           <div class="pa-card-icon"><i class="fa-solid fa-ring"></i></div>
           <h3>Prenuptial Agreements</h3>
-          <p>Protecting your financial interests before marriage â€” with clarity, transparency, and respect for both
+          <p>Protecting your financial interests before marriage - with clarity, transparency, and respect for both
             parties.</p>
           <div class="pa-sub-list">
             <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Prenuptial Agreement Drafting</div>
@@ -572,7 +581,7 @@
           <div class="pa-card-num">06</div>
           <div class="pa-card-icon"><i class="fa-solid fa-handshake"></i></div>
           <h3>Mediation &amp; Arbitration</h3>
-          <p>Resolving disputes outside court â€” faster, more affordable, and with less emotional strain on your family.
+          <p>Resolving disputes outside court - faster, more affordable, and with less emotional strain on your family.
           </p>
           <div class="pa-sub-list">
             <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Family Mediation</div>
@@ -603,7 +612,7 @@
           <div class="section-divider left"></div>
           <p style="color:var(--gray-text);line-height:1.9;font-size:0.95rem;margin-bottom:2rem;">
             Divorce and family disputes are among the most emotionally challenging events anyone can face. Attorney
-            Reddy provides a stable, knowledgeable presence â€” ensuring you make informed decisions during turbulent
+            Reddy provides a stable, knowledgeable presence - ensuring you make informed decisions during turbulent
             times.
           </p>
 
@@ -702,30 +711,30 @@
 
           <div>
             <div class="faq-item">
-              <div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">
+              <div class="faq-q">
                 <h4>Do I need a trust if I already have a will?</h4>
                 <i class="fa-solid fa-plus"></i>
               </div>
-              <div class="faq-a">While a will is essential, a trust offers additional benefits â€” avoiding probate,
+              <div class="faq-a">While a will is essential, a trust offers additional benefits - avoiding probate,
                 providing for minor children, managing assets if you become incapacitated, and offering tax advantages.
                 Many comprehensive estate plans include both.</div>
             </div>
             <div class="faq-item">
-              <div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">
+              <div class="faq-q">
                 <h4>What happens if I die without a will in India?</h4>
                 <i class="fa-solid fa-plus"></i>
               </div>
               <div class="faq-a">If you die intestate (without a will), your assets are distributed according to the
-                Hindu Succession Act or the Indian Succession Act â€” which may not align with your wishes. This can cause
+                Hindu Succession Act or the Indian Succession Act - which may not align with your wishes. This can cause
                 family disputes and costly probate proceedings.</div>
             </div>
             <div class="faq-item">
-              <div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">
+              <div class="faq-q">
                 <h4>How often should I update my estate plan?</h4>
                 <i class="fa-solid fa-plus"></i>
               </div>
               <div class="faq-a">Review your estate plan after major life events: marriage, divorce, birth of a child,
-                significant asset changes, or the death of a beneficiary. We recommend a full review every 3â€“5 years
+                significant asset changes, or the death of a beneficiary. We recommend a full review every 3-5 years
                 regardless.</div>
             </div>
           </div>
@@ -742,7 +751,7 @@
         <h2 class="section-title">Our Process</h2>
         <div class="section-divider"></div>
         <p style="color:var(--gray-text);max-width:500px;margin:0 auto;font-size:0.95rem;line-height:1.8;">
-          A clear, structured approach â€” so you always know where you stand and what comes next.
+          A clear, structured approach - so you always know where you stand and what comes next.
         </p>
       </div>
 
@@ -751,7 +760,7 @@
           <div class="step-num">1</div>
           <div class="step-content">
             <h4>Free Initial Consultation</h4>
-            <p>We discuss your situation, listen carefully, and provide an honest assessment of your legal options â€” at
+            <p>We discuss your situation, listen carefully, and provide an honest assessment of your legal options - at
               no cost.</p>
           </div>
         </div>
@@ -775,7 +784,7 @@
           <div class="step-num">4</div>
           <div class="step-content">
             <h4>Active Legal Representation</h4>
-            <p>We handle filings, court appearances, negotiations, and everything in between â€” keeping you informed at
+            <p>We handle filings, court appearances, negotiations, and everything in between - keeping you informed at
               every step.</p>
           </div>
         </div>
@@ -854,7 +863,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Â© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
+        <p>© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
         <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclaimer</a>
         </div>
       </div>
@@ -865,6 +874,10 @@
 </body>
 
 </html>
+
+
+
+
 
 
 

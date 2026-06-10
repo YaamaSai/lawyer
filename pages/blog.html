@@ -2,11 +2,20 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATTORNEY</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <meta name="description"
-    content="Read expert legal insights on Family Law, Estate Planning, Child Custody and more â€” from Attorney Y Sai Yashwanth Reddy." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>âš–ï¸</text></svg>">  <meta name="description"
+    content="Read expert legal insights on Family Law, Estate Planning, Child Custody and more - from Attorney Y Sai Yashwanth Reddy." />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
@@ -555,9 +564,9 @@
         </div>
         <div class="featured-body">
           <span class="blog-tag">Estate Planning</span>
-          <h2>Why Every Indian Family Needs an Estate Plan â€” Regardless of Wealth</h2>
+          <h2>Why Every Indian Family Needs an Estate Plan - Regardless of Wealth</h2>
           <p>Estate planning isn't a luxury reserved for the wealthy. It's the single most important legal step every
-            family can take. Discover why â€” and what happens if you don't have one in place.</p>
+            family can take. Discover why - and what happens if you don't have one in place.</p>
           <div class="blog-meta" style="margin-bottom:1.5rem;">
             <span><i class="fa-regular fa-calendar"></i> May 28, 2026</span>
             <span><i class="fa-regular fa-clock"></i> 5 min read</span>
@@ -572,7 +581,7 @@
             </div>
             <div>
               <div class="featured-author-name">Y Sai Yashwanth Reddy, Esq.</div>
-              <div class="featured-author-sub">Attorney at Law Â· Estate Planning</div>
+              <div class="featured-author-sub">Attorney at Law Ã‚Â· Estate Planning</div>
             </div>
           </div>
         </div>
@@ -592,11 +601,11 @@
         <button class="filter-tab active">All Articles</button>
         <button class="filter-tab">Family Law</button>
         <button class="filter-tab">Estate Planning</button>
-        <button class="filter-tab">Child Custody</button>
         <button class="filter-tab">Divorce</button>
         <button class="filter-tab">Probate</button>
         <button class="filter-tab">Mediation</button>
       </div>
+
 
       <!-- Grid: Articles + Sidebar -->
       <div class="blog-main-grid">
@@ -630,7 +639,7 @@
               <div class="article-card-body">
                 <span class="blog-tag">Trusts</span>
                 <h3>Living Trusts vs. Wills: A Complete Comparison for Indian Families</h3>
-                <p>Both are essential estate planning tools â€” but they serve different purposes. Here's a clear
+                <p>Both are essential estate planning tools - but they serve different purposes. Here's a clear
                   breakdown to help you decide.</p>
                 <div class="blog-meta">
                   <span><i class="fa-regular fa-calendar"></i> Apr 30, 2026</span>
@@ -647,7 +656,7 @@
               <div class="article-card-body">
                 <span class="blog-tag">Divorce</span>
                 <h3>The Divorce Process in India: A Step-by-Step Legal Guide</h3>
-                <p>From petition to decree â€” a clear walkthrough of what to expect during a mutual consent or contested
+                <p>From petition to decree - a clear walkthrough of what to expect during a mutual consent or contested
                   divorce.</p>
                 <div class="blog-meta">
                   <span><i class="fa-regular fa-calendar"></i> Apr 10, 2026</span>
@@ -664,7 +673,7 @@
               <div class="article-card-body">
                 <span class="blog-tag">Estate Planning</span>
                 <h3>Power of Attorney: Everything You Need to Know Before Signing</h3>
-                <p>A Power of Attorney is one of the most powerful documents you can create â€” and one of the most
+                <p>A Power of Attorney is one of the most powerful documents you can create - and one of the most
                   misunderstood. Don't sign without reading this.</p>
                 <div class="blog-meta">
                   <span><i class="fa-regular fa-calendar"></i> Mar 22, 2026</span>
@@ -681,7 +690,7 @@
               <div class="article-card-body">
                 <span class="blog-tag">Mediation</span>
                 <h3>Why Mediation is Often the Better Choice in Family Disputes</h3>
-                <p>Mediation is faster, cheaper, and far less emotionally damaging than courtroom litigation â€”
+                <p>Mediation is faster, cheaper, and far less emotionally damaging than courtroom litigation -
                   especially when children are involved.</p>
                 <div class="blog-meta">
                   <span><i class="fa-regular fa-calendar"></i> Mar 5, 2026</span>
@@ -709,13 +718,7 @@
 
           </div>
 
-          <!-- Pagination -->
-          <div class="pagination">
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
-          </div>
+
         </div>
 
         <!-- Sidebar -->
@@ -793,7 +796,7 @@
       <div class="cta-box fade-in">
         <span class="section-label">Get Clarity</span>
         <h2>Have Legal Questions?<br /><span class="gold-text">Let's Talk.</span></h2>
-        <p>Reading articles is a great first step â€” but every situation is unique. Get personalised guidance from an
+        <p>Reading articles is a great first step - but every situation is unique. Get personalised guidance from an
           experienced attorney.</p>
         <div class="cta-actions">
           <a href="contact.html" class="btn btn-gold"><i class="fa-solid fa-calendar-check"></i> Schedule Free
@@ -869,13 +872,7 @@
         tab.classList.add('active');
       });
     });
-    // Pagination
-    document.querySelectorAll('.page-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
-        if (!btn.querySelector('i')) btn.classList.add('active');
-      });
-    });
+
     // Newsletter
     const subBtn = document.querySelector('.newsletter-widget .btn-gold');
     if (subBtn) {
@@ -889,6 +886,9 @@
 </body>
 
 </html>
+
+
+
 
 
 

@@ -507,3 +507,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// FAQ Accordion Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const faqQuestions = document.querySelectorAll('.faq-q');
+  faqQuestions.forEach(q => {
+    q.addEventListener('click', () => {
+      const parentItem = q.closest('.faq-item');
+      const isCurrentlyOpen = parentItem.classList.contains('open');
+      
+      // Close all other faq items in the same container
+      const container = parentItem.parentElement;
+      container.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('open');
+        const ans = item.querySelector('.faq-a');
+        if (ans) ans.style.display = 'none';
+        const icon = item.querySelector('.faq-q i');
+        if (icon) icon.style.transform = '';
+      });
+      
+      // If it wasn't open, open it now
+      if (!isCurrentlyOpen) {
+        parentItem.classList.add('open');
+        const ans = parentItem.querySelector('.faq-a');
+        if (ans) ans.style.display = 'block';
+        const icon = parentItem.querySelector('.faq-q i');
+        if (icon) icon.style.transform = 'rotate(45deg)';
+      }
+    });
+  });
+});

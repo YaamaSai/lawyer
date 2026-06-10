@@ -1,10 +1,19 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATTORNEY</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>âš–ï¸</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
     /* Contact layout */
@@ -181,20 +190,7 @@
     .form-success h3 { font-size: 1.6rem; margin-bottom: 0.75rem; }
     .form-success p  { color: var(--gray-text); line-height: 1.8; font-size: 0.9rem; }
 
-    /* Emergency banner */
-    .emergency-banner {
-      background: rgba(239,68,68,0.07);
-      border: 1px solid rgba(239,68,68,0.2);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .emergency-banner i { color: #EF4444; font-size: 1.2rem; flex-shrink: 0; }
-    .emergency-banner p { font-size: 0.85rem; color: var(--ivory-dim); line-height: 1.6; }
-    .emergency-banner strong { color: var(--ivory); }
+
 
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -287,7 +283,7 @@
       <h1 class="section-title">Schedule Your Free<br/>Consultation</h1>
       <div class="section-divider"></div>
       <p style="color:var(--gray-text);max-width:520px;margin:0 auto;line-height:1.8;font-size:0.95rem;">
-        Every matter begins with a confidential conversation. Tell us about your situation â€” and we'll chart the best path forward.
+        Every matter begins with a confidential conversation. Tell us about your situation - and we'll chart the best path forward.
       </p>
     </div>
   </section>
@@ -320,7 +316,7 @@
                 <div class="contact-detail-value">
                   <a href="tel:+919876543210" style="color:var(--ivory);transition:var(--transition);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ivory)'">+91 987 654 3210</a>
                 </div>
-                <div class="contact-detail-sub">Call or WhatsApp â€” Mon to Sat, 9 AMâ€“7 PM</div>
+                <div class="contact-detail-sub">Call or WhatsApp - Mon to Sat, 9 AM-7 PM</div>
               </div>
             </div>
 
@@ -331,7 +327,7 @@
                 <div class="contact-detail-value">
                   <a href="mailto:yashwanth@reddy-law.in" style="color:var(--ivory);transition:var(--transition);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ivory)'">yashwanth@reddy-law.in</a>
                 </div>
-                <div class="contact-detail-sub">Typically responds within 4â€“6 hours</div>
+                <div class="contact-detail-sub">Typically responds within 4-6 hours</div>
               </div>
             </div>
 
@@ -339,7 +335,7 @@
               <div class="contact-detail-icon"><i class="fa-solid fa-location-dot"></i></div>
               <div>
                 <div class="contact-detail-label">Office Address</div>
-                <div class="contact-detail-value">Suite 204, Legal Tower<br/>Himayat Nagar, Hyderabad<br/>Telangana â€” 500 029</div>
+                <div class="contact-detail-value">Suite 204, Legal Tower<br/>Himayat Nagar, Hyderabad<br/>Telangana - 500 029</div>
                 <div class="contact-detail-sub">Parking available on-site</div>
               </div>
             </div>
@@ -349,8 +345,8 @@
               <div>
                 <div class="contact-detail-label">Office Hours</div>
                 <div class="hours-grid">
-                  <div class="hours-row"><span class="hours-day">Monday â€“ Friday</span><span class="hours-time">9:00 AM â€“ 7:00 PM</span></div>
-                  <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM â€“ 4:00 PM</span></div>
+                  <div class="hours-row"><span class="hours-day">Monday - Friday</span><span class="hours-time">9:00 AM - 7:00 PM</span></div>
+                  <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM - 4:00 PM</span></div>
                   <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-closed">Closed</span></div>
                   <div class="hours-row" style="padding-top:0.25rem;"><span class="hours-day" style="color:var(--gold);font-size:0.75rem;">Urgent matters: available 24/7</span></div>
                 </div>
@@ -359,11 +355,9 @@
 
           </div>
 
-          <!-- Map placeholder -->
-          <div class="map-placeholder">
-            <i class="fa-solid fa-map-location-dot"></i>
-            <p>Suite 204, Legal Tower, Hyderabad</p>
-            <a href="https://maps.google.com" target="_blank" rel="noopener">Open in Google Maps â†’</a>
+          <!-- Real Map Embed -->
+          <div style="margin-top: 1.5rem; border-radius: var(--radius-lg); overflow: hidden; height: 250px; border: 1px solid var(--glass-border); width: 100%;">
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Himayat%20Nagar,%20Hyderabad,%20Telangana&t=&z=14&ie=UTF8&iwloc=&output=embed" style="border: 0;"></iframe>
           </div>
 
           <!-- Social Links -->
@@ -383,11 +377,7 @@
         <div class="fade-in-right">
           <div class="contact-form-panel">
 
-            <!-- Emergency Banner -->
-            <div class="emergency-banner">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <p><strong>Urgent Legal Matter?</strong> Call directly at <a href="tel:+919876543210" style="color:var(--gold);font-weight:700;">+91 987 654 3210</a> for priority assistance â€” available for emergencies outside business hours.</p>
-            </div>
+
 
             <!-- Form Header -->
             <div class="form-panel-header">
@@ -454,14 +444,14 @@
                   <label class="form-label" for="preferred-time">Preferred Time</label>
                   <select id="preferred-time" name="preferred-time" class="form-control">
                     <option value="" disabled selected>Select a time...</option>
-                    <option>9:00 AM â€“ 10:00 AM</option>
-                    <option>10:00 AM â€“ 11:00 AM</option>
-                    <option>11:00 AM â€“ 12:00 PM</option>
-                    <option>12:00 PM â€“ 1:00 PM</option>
-                    <option>2:00 PM â€“ 3:00 PM</option>
-                    <option>3:00 PM â€“ 4:00 PM</option>
-                    <option>4:00 PM â€“ 5:00 PM</option>
-                    <option>5:00 PM â€“ 6:00 PM</option>
+                    <option>9:00 AM - 10:00 AM</option>
+                    <option>10:00 AM - 11:00 AM</option>
+                    <option>11:00 AM - 12:00 PM</option>
+                    <option>12:00 PM - 1:00 PM</option>
+                    <option>2:00 PM - 3:00 PM</option>
+                    <option>3:00 PM - 4:00 PM</option>
+                    <option>4:00 PM - 5:00 PM</option>
+                    <option>5:00 PM - 6:00 PM</option>
                   </select>
                 </div>
               </div>
@@ -485,7 +475,7 @@
               <!-- Trust Badges -->
               <div class="trust-badges">
                 <div class="trust-badge"><i class="fa-solid fa-shield-halved"></i> 100% Confidential</div>
-                <div class="trust-badge"><i class="fa-solid fa-bolt"></i> Response in 4â€“6 hrs</div>
+                <div class="trust-badge"><i class="fa-solid fa-bolt"></i> Response in 4-6 hrs</div>
                 <div class="trust-badge"><i class="fa-solid fa-star"></i> Free Initial Consult</div>
               </div>
 
@@ -495,7 +485,7 @@
             <div class="form-success" id="form-success">
               <i class="fa-solid fa-circle-check"></i>
               <h3>Request Received!</h3>
-              <p>Thank you for reaching out. Attorney Reddy's office will contact you within <strong style="color:var(--gold);">4â€“6 business hours</strong> to confirm your consultation.</p>
+              <p>Thank you for reaching out. Attorney Reddy's office will contact you within <strong style="color:var(--gold);">4-6 business hours</strong> to confirm your consultation.</p>
               <p style="margin-top:0.75rem;">In the meantime, explore our <a href="blog.html" style="color:var(--gold);">Legal Insights</a> or set up your <a href="client-portal.html" style="color:var(--gold);">Client Portal</a>.</p>
             </div>
 
@@ -514,7 +504,7 @@
         <h2 class="section-title">What to Expect</h2>
         <div class="section-divider"></div>
         <p style="color:var(--gray-text);max-width:500px;margin:0 auto;font-size:0.95rem;line-height:1.8;">
-          From your first message to your first meeting â€” here's what happens next.
+          From your first message to your first meeting - here's what happens next.
         </p>
       </div>
 
@@ -529,7 +519,7 @@
         <div class="glass-card fade-in delay-2" style="padding:2rem;text-align:center;">
           <div style="width:56px;height:56px;border-radius:50%;background:rgba(200,169,107,0.1);border:2px solid rgba(200,169,107,0.25);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:1.2rem;font-weight:800;color:var(--gold);margin:0 auto 1.25rem;">2</div>
           <h3 style="font-size:1rem;margin-bottom:0.6rem;">Office Follow-Up</h3>
-          <p style="font-size:0.82rem;color:var(--gray-text);line-height:1.7;">Our office will call or email within 4â€“6 hours to confirm your appointment date, time, and format.</p>
+          <p style="font-size:0.82rem;color:var(--gray-text);line-height:1.7;">Our office will call or email within 4-6 hours to confirm your appointment date, time, and format.</p>
         </div>
 
         <div class="glass-card fade-in delay-3" style="padding:2rem;text-align:center;">
@@ -571,7 +561,7 @@
                 <h4 style="font-size:0.95rem;font-weight:600;color:var(--ivory);font-family:var(--font-body);">Is the initial consultation really free?</h4>
                 <i class="fa-solid fa-plus" style="color:var(--gold);flex-shrink:0;transition:var(--transition);"></i>
               </div>
-              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">Yes â€” completely. The initial consultation (up to 45 minutes) is offered at no charge. There's no obligation to retain our services afterward. It's an opportunity to understand your situation and explore how we can help.</div>
+              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">Yes - completely. The initial consultation (up to 45 minutes) is offered at no charge. There's no obligation to retain our services afterward. It's an opportunity to understand your situation and explore how we can help.</div>
             </div>
 
             <div class="faq-item" style="border-top:1px solid var(--glass-border);padding:1.25rem 1.5rem;">
@@ -587,7 +577,7 @@
                 <h4 style="font-size:0.95rem;font-weight:600;color:var(--ivory);font-family:var(--font-body);">What documents should I bring?</h4>
                 <i class="fa-solid fa-plus" style="color:var(--gold);flex-shrink:0;transition:var(--transition);"></i>
               </div>
-              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">For the first consultation, simply bring any documents you feel are relevant â€” marriage certificate, previous court orders, property documents, or existing wills. Don't worry if you don't have everything; we'll guide you on what to gather afterward.</div>
+              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">For the first consultation, simply bring any documents you feel are relevant - marriage certificate, previous court orders, property documents, or existing wills. Don't worry if you don't have everything; we'll guide you on what to gather afterward.</div>
             </div>
 
             <div class="faq-item" style="border-top:1px solid var(--glass-border);padding:1.25rem 1.5rem;">
@@ -595,7 +585,7 @@
                 <h4 style="font-size:0.95rem;font-weight:600;color:var(--ivory);font-family:var(--font-body);">How are legal fees structured?</h4>
                 <i class="fa-solid fa-plus" style="color:var(--gold);flex-shrink:0;transition:var(--transition);"></i>
               </div>
-              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">Fees are discussed transparently during the consultation and depend on the nature and complexity of your matter. We offer retainer-based arrangements for ongoing matters and flat-fee services for document drafting (wills, trusts). There are no hidden charges â€” ever.</div>
+              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">Fees are discussed transparently during the consultation and depend on the nature and complexity of your matter. We offer retainer-based arrangements for ongoing matters and flat-fee services for document drafting (wills, trusts). There are no hidden charges - ever.</div>
             </div>
 
             <div class="faq-item" style="border-top:1px solid var(--glass-border);padding:1.25rem 1.5rem;">
@@ -603,7 +593,7 @@
                 <h4 style="font-size:0.95rem;font-weight:600;color:var(--ivory);font-family:var(--font-body);">Is my information confidential?</h4>
                 <i class="fa-solid fa-plus" style="color:var(--gold);flex-shrink:0;transition:var(--transition);"></i>
               </div>
-              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">100%. All information shared with Attorney Reddy â€” from the first contact through case completion â€” is protected by attorney-client privilege and our strict confidentiality policy. It will never be disclosed to any third party without your explicit consent.</div>
+              <div class="faq-a" style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;padding-top:0.75rem;display:none;">100%. All information shared with Attorney Reddy - from the first contact through case completion - is protected by attorney-client privilege and our strict confidentiality policy. It will never be disclosed to any third party without your explicit consent.</div>
             </div>
 
           </div>
@@ -692,25 +682,13 @@
       });
     }
 
-    // FAQ accordion (inline ones)
-    document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => {
-        const item = q.closest('.faq-item');
-        const isOpen = item.classList.contains('open');
-        item.classList.toggle('open');
-        const answer = item.querySelector('.faq-a');
-        if (answer) {
-          answer.style.display = isOpen ? 'none' : 'block';
-        }
-        const icon = q.querySelector('i');
-        if (icon) {
-          icon.style.transform = isOpen ? '' : 'rotate(45deg)';
-        }
-      });
-    });
+
   </script>
 </body>
 </html>
+
+
+
 
 
 

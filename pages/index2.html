@@ -1,12 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATTORNEY</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>"> <meta name="description" content="Y Sai Yashwanth Reddy â€“ Trusted solo attorney specializing in Family Law and Estate Planning." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>âš–ï¸</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
     /* Custom styles for Home 2 (Index 2) */
@@ -271,8 +279,7 @@
     @media (max-width: 768px) {
       .bento-grid {
         grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        min-height: 200px;
+        grid-auto-rows: 260px;
       }
 
       .bento-item-large,
@@ -587,7 +594,7 @@
         </div>
         <div class="fade-in-right" style="position: relative;">
           <div class="about-img-frame"
-            style="position: absolute; top: -15px; right: -15px; width: 100%; height: 100%; border: 2px solid var(--gold); border-radius: var(--radius-lg); z-index: 0;">
+            style="position: absolute; top: -15px; right: -15px; width: 100%; height: 100%; border: 2px solid var(--gold); background: var(--gold); border-radius: var(--radius-lg); z-index: 0;">
           </div>
           <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=1000"
             alt="Attorney Office"
@@ -598,74 +605,38 @@
   </section>
 
 
-  <!-- ===================== STATISTICS ===================== -->
-  <section class="stats-section">
+    <!-- ===================== MINIMAL ADVANTAGE SECTION ===================== -->
+  <section class="minimal-advantage-section">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item fade-in">
-          <div class="stat-number" data-count="98%">0</div>
-          <div class="stat-label">Client Satisfaction</div>
+      <div class="minimal-grid">
+                <!-- Left: Static Image -->
+        <div style="position:relative;">
+          <div class="fade-in-left" style="height: 100%;">
+            <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=1000" alt="Law Firm Detail" style="width:100%; height:100%; min-height: 400px; object-fit:cover; border-radius: 4px;">
+          </div>
         </div>
-        <div class="stat-item fade-in delay-1">
-          <div class="stat-number" data-count="900+">0</div>
-          <div class="stat-label">Cases Resolved</div>
-        </div>
-        <div class="stat-item fade-in delay-2">
-          <div class="stat-number" data-count="15+">0</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-        <div class="stat-item fade-in delay-3">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Client Support</div>
+
+        <!-- Right: Minimalist List -->
+        <div class="minimal-list fade-in-right">
+          
+          <div class="minimal-item">
+            <div class="minimal-num">01 / Dedication</div>
+            <h3 class="minimal-item-title">Boutique Attention</h3>
+            <p class="minimal-item-desc">You work directly with senior counsel. We deliberately take on fewer cases to ensure your matter receives the absolute, undivided dedication it deserves.</p>
+          </div>
+
+          <div class="minimal-item">
+            <div class="minimal-num">02 / Precision</div>
+            <h3 class="minimal-item-title">Data-Driven Strategy</h3>
+            <p class="minimal-item-desc">We leverage advanced legal analytics, extensive precedent research, and modern technology to build stronger, more effective cases. We leave nothing to chance.</p>
+          </div>
+
+          
+
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- ===================== WHY CHOOSE US ===================== -->
-  <section style="background:var(--navy);">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Why Choose Us</span>
-        <h2 class="section-title">A Different Kind of Law Firm</h2>
-        <div class="section-divider"></div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="responsive-3col">
-        <div class="glass-card" style="padding:2.5rem;text-align:center;" class="fade-in delay-1">
-          <div
-            style="width:72px;height:72px;border-radius:50%;background:rgba(200,169,107,0.1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin:0 auto 1.5rem;">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-          <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Trusted Advocacy</h3>
-          <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">Unwavering commitment to your rights and
-            best interests â€” in court and at the negotiating table.</p>
-        </div>
-
-        <div class="glass-card fade-in delay-2" style="padding:2.5rem;text-align:center;">
-          <div
-            style="width:72px;height:72px;border-radius:50%;background:rgba(200,169,107,0.1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin:0 auto 1.5rem;">
-            <i class="fa-solid fa-comments"></i>
-          </div>
-          <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Clear Communication</h3>
-          <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">No legal jargon. No surprises. We keep
-            you fully informed at every stage of your case.</p>
-        </div>
-
-        <div class="glass-card fade-in delay-3" style="padding:2.5rem;text-align:center;">
-          <div
-            style="width:72px;height:72px;border-radius:50%;background:rgba(200,169,107,0.1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin:0 auto 1.5rem;">
-            <i class="fa-solid fa-lock"></i>
-          </div>
-          <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Secure Client Portal</h3>
-          <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">Upload documents, track progress, make
-            payments, and schedule consultations â€” all in one secure dashboard.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== TESTIMONIALS ===================== -->
+  </section><!-- ===================== TESTIMONIALS ===================== -->
   <section class="testimonials-section">
     <div class="container">
       <div class="section-header fade-in">
@@ -720,7 +691,7 @@
             <i class="fa-solid fa-star-half-stroke"></i>
           </div>
           <p class="testimonial-quote">"The secure client portal made everything so easy. I could upload documents,
-            review my case timeline, and communicate with Mr. Reddy â€” all without having to come into the office every
+            review my case timeline, and communicate with Mr. Reddy ÃƒÂ¢Ã¢â€šÂ¬"Â all without having to come into the office every
             time."</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">SM</div>
@@ -762,7 +733,7 @@
         <span class="section-label">Take Action Today</span>
         <h2>Your Legal Matter Deserves<br /><span class="gold-text">Personal Attention</span></h2>
         <p>Schedule a confidential consultation with Attorney Y Sai Yashwanth Reddy. We'll review your situation and
-          outline a clear strategy â€” with no obligation.</p>
+          outline a clear strategy ÃƒÂ¢Ã¢â€šÂ¬"Â with no obligation.</p>
         <div class="cta-actions">
           <a href="contact.html" class="btn btn-gold">
             <i class="fa-solid fa-calendar-check"></i> Book Free Consultation
@@ -842,14 +813,14 @@
           </div>
           <div class="footer-contact-item">
             <i class="fa-regular fa-clock"></i>
-            <span>Monâ€“Sat: 9:00 AM â€“ 7:00 PM</span>
+            <span>Mon-Sat: 9:00 AM - 7:00 PM</span>
           </div>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <p>Â© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
+        <p>Ãƒâ€šÂ© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms</a>
@@ -863,6 +834,11 @@
 </body>
 
 </html>
+
+
+
+
+
 
 
 
