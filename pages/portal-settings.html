@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body { background: var(--navy); overflow-x: clip; }
+    .sidebar-section-label { font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-text);padding:0 1rem;margin:1rem 0 0.4rem; }
+
+    .settings-grid { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; align-items: start; }
+
+    /* Mobile overrides */
+    @media (max-width: 900px) {
+      .settings-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .settings-sidebar { position: static !important; }
+      .settings-nav { flex-direction: row; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; }
+      .settings-nav::-webkit-scrollbar { display: none; }
+      .settings-tab { white-space: nowrap; width: auto; flex-shrink: 0; padding: 0.6rem 1rem; }
+      .help-box { display: none; } /* Hide help box on mobile to save space */
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .avatar-section { flex-direction: column; text-align: center; gap: 1rem; }
+      .avatar-large { margin: 0 auto; }
+      .toggle-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .toggle { align-self: flex-start; }
+    }
+
+    /* RTL specific overrides for Settings */
+    .mobile-rtl-active .settings-tab i { margin-left: 0.5rem; margin-right: 0; }
+    .mobile-rtl-active .settings-tab { text-align: right; }
+    .mobile-rtl-active .toggle { align-self: flex-end; }
+
+    /* Settings panels */
+    .settings-panel { display: block; margin-bottom: 2rem; }
+
+    /* Form fields */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.78rem; color: var(--gray-text); margin-bottom: 0.4rem; letter-spacing: 0.03em; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); color: var(--ivory);
+      font-family: var(--font-body); font-size: 0.9rem;
+      outline: none; transition: var(--transition);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: rgba(200,169,107,0.4); box-shadow: 0 0 0 3px rgba(200,169,107,0.08);
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--gray-text); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Avatar */
+    .avatar-section { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); }
+    .avatar-large { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 3px solid rgba(200,169,107,0.3); flex-shrink: 0; }
+    .avatar-large img { width: 100%; height: 100%; object-fit: cover; }
+    .avatar-change-btn { font-size: 0.8rem; color: var(--gold); cursor: pointer; padding: 0.4rem 1rem; border: 1px solid rgba(200,169,107,0.3); border-radius: 20px; background: transparent; font-family: var(--font-body); transition: var(--transition); }
+    .avatar-change-btn:hover { background: rgba(200,169,107,0.1); }
+
+    /* Toggle switch */
+    .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--glass-border); }
+    .toggle-row:last-child { border-bottom: none; }
+    .toggle-info { flex: 1; }
+    .toggle-info strong { display: block; font-size: 0.88rem; color: var(--ivory); margin-bottom: 0.2rem; }
+    .toggle-info span { font-size: 0.75rem; color: var(--gray-text); }
+    .toggle { position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: var(--glass-border); border-radius: 24px; transition: var(--transition); }
+    .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: var(--gray-text); border-radius: 50%; transition: var(--transition); }
+    .toggle input:checked + .toggle-slider { background: rgba(200,169,107,0.3); }
+    .toggle input:checked + .toggle-slider:before { transform: translateX(20px); background: var(--gold); }
+
+    /* Danger zone */
+    .danger-zone { border: 1px solid rgba(239,68,68,0.2); border-radius: var(--radius); padding: 1.5rem; background: rgba(239,68,68,0.03); }
+    .danger-zone h4 { color: #EF4444; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .danger-zone p { font-size: 0.8rem; color: var(--gray-text); margin-bottom: 1rem; }
+    .btn-danger { background: transparent; border: 1px solid rgba(239,68,68,0.4); color: #EF4444; padding: 0.6rem 1.25rem; border-radius: var(--radius); font-family: var(--font-body); font-size: 0.82rem; cursor: pointer; transition: var(--transition); }
+    .btn-danger:hover { background: rgba(239,68,68,0.1); }
+  </style>
+</head>
+<body>
+  <div id="cursor-glow"></div>
+  <div class="portal-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html" class="nav-logo" style="text-decoration: none;">
+          <div class="nav-logo-icon" style="color: #ffffff;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="nav-logo-text">
+            <h2 style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 0.05em; font-weight: 700; color: inherit; margin: 0; line-height: 1.2;">ATTORNEY</h2><span style="font-family: var(--font-body); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL CONSULTANT</span>
+          </div>
+        </a>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Main</div>
+        <a href="client-portal.html" class="sidebar-link"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+        <a href="portal-documents.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> Case Documents</a>
+        <a href="portal-messages.html" class="sidebar-link"><i class="fa-solid fa-message"></i> Secure Messages <span class="sidebar-badge">2</span></a>
+        <div class="sidebar-section-label">Billing</div>
+        <a href="portal-payments.html" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices &amp; Payments</a>
+        <div class="sidebar-section-label">Scheduling</div>
+        <a href="portal-appointments.html" class="sidebar-link"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
+        <div class="sidebar-section-label">Account</div>
+        <a href="portal-settings.html" class="sidebar-link active"><i class="fa-solid fa-gear"></i> Account Settings</a>
+      </nav>
+        <div class="sidebar-appearance" style="margin-top:auto;">
+          <div class="sidebar-section-label" style="margin-top:0;">Appearance</div>
+          <div style="padding: 0 1rem; display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <button class="btn btn-ghost rtl-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);">RTL</button>
+            <button class="btn btn-ghost theme-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);"><i class="fa-solid fa-moon"></i> Dark</button>
+          </div>
+        </div>
+      <div class="sidebar-bottom">
+        <a href="index.html" class="sidebar-link" style="color:var(--gray-text);"><i class="fa-solid fa-right-from-bracket"></i> Secure Logout</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="portal-main">
+      <div class="portal-topbar">
+        <div class="portal-topbar-left">
+          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.2rem;padding:0.4rem;margin-right:0.5rem;"><i class="fa-solid fa-bars"></i></button>
+          <h1>Account Settings</h1>
+        </div>
+        <div class="portal-topbar-right">
+            <div class="topbar-separator"></div>
+          <div class="topbar-avatar">
+            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=100&auto=format&fit=crop" alt="Client" />
+          </div>
+            <i class="fa-solid fa-chevron-down avatar-chevron"></i>
+        </div>
+      </div>
+
+      <div class="settings-grid" style="display: block;">
+
+        <!-- Settings Panels -->
+        <div>
+
+          <!-- PROFILE -->
+          <div class="settings-panel active portal-panel" id="panel-profile">
+            <h3 style="color:var(--ivory);margin-bottom:1.5rem;font-size:1rem;"><i class="fa-solid fa-user" style="color:var(--gold);margin-right:0.5rem;"></i> Profile Information</h3>
+            <div class="avatar-section">
+              <div class="avatar-large">
+                <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=200&auto=format&fit=crop" alt="Profile" />
+              </div>
+              <div>
+                <button class="avatar-change-btn"><i class="fa-solid fa-upload"></i> Change Photo</button>
+                <p style="font-size:0.72rem;color:var(--gray-text);margin-top:0.4rem;">JPG or PNG, max 5 MB</p>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" value="Y. Sai" /></div>
+              <div class="form-group"><label>Last Name</label><input type="text" value="Yashwanth Reddy" /></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" value="client@reddylaw.in" /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" value="+91 98765 43210" /></div>
+            <div class="form-group"><label>Preferred Language</label>
+              <select><option selected>English</option><option>Telugu</option><option>Hindi</option></select>
+            </div>
+            <div class="form-group"><label>Address</label><textarea rows="2" placeholder="Your address...">42 Jubilee Hills, Hyderabad, Telangana 500033</textarea></div>
+            <button class="btn btn-gold" style="margin-top:0.5rem;"><i class="fa-solid fa-check"></i> Save Changes</button>
+          </div>
+
+          <!-- SECURITY -->
+          <div class="settings-panel portal-panel" id="panel-security">
+            <h3 style="color:var(--ivory);margin-bottom:1.5rem;font-size:1rem;"><i class="fa-solid fa-lock" style="color:var(--gold);margin-right:0.5rem;"></i> Security Settings</h3>
+            <div class="form-group"><label>Current Password</label><input type="password" placeholder="Enter current password" /></div>
+            <div class="form-group"><label>New Password</label><input type="password" placeholder="Minimum 8 characters" /></div>
+            <div class="form-group"><label>Confirm New Password</label><input type="password" placeholder="Repeat new password" /></div>
+            <button class="btn btn-gold" style="margin-bottom:2rem;"><i class="fa-solid fa-lock"></i> Update Password</button>
+
+            <div style="padding-top:1.5rem;border-top:1px solid var(--glass-border);">
+              <h4 style="color:var(--ivory);font-size:0.9rem;margin-bottom:1rem;">Two-Factor Authentication</h4>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <strong>SMS Verification</strong>
+                  <span>Receive a code on +91 98765 43210 when signing in</span>
+                </div>
+                <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <strong>Email Verification</strong>
+                  <span>Receive a code on your email when signing in</span>
+                </div>
+                <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+              </div>
+            </div>
+
+            <div style="padding-top:1.5rem;border-top:1px solid var(--glass-border);margin-top:1rem;">
+              <h4 style="color:var(--ivory);font-size:0.9rem;margin-bottom:1rem;">Active Sessions</h4>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:rgba(200,169,107,0.06);border:1px solid rgba(200,169,107,0.15);border-radius:var(--radius);">
+                <div>
+                  <div style="font-size:0.85rem;color:var(--ivory);font-weight:600;"><i class="fa-solid fa-desktop" style="color:var(--gold);margin-right:0.5rem;"></i>Chrome &mdash; Windows</div>
+                  <div style="font-size:0.72rem;color:var(--gray-text);">Hyderabad, India &bull; Active now</div>
+                </div>
+                <span style="font-size:0.7rem;color:var(--green);font-weight:600;">Current</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- NOTIFICATIONS -->
+          <div class="settings-panel portal-panel" id="panel-notifications">
+            <h3 style="color:var(--ivory);margin-bottom:1.5rem;font-size:1rem;"><i class="fa-solid fa-bell" style="color:var(--gold);margin-right:0.5rem;"></i> Notification Preferences</h3>
+            <div class="toggle-row">
+              <div class="toggle-info"><strong>Case Updates</strong><span>Get notified when your case status changes</span></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info"><strong>New Messages</strong><span>Receive alerts for new messages from your attorney</span></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info"><strong>Appointment Reminders</strong><span>Reminder 24 hours before each consultation</span></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info"><strong>Payment Due Alerts</strong><span>Get notified 7 days before a payment is due</span></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info"><strong>Document Shared</strong><span>Alert when new documents are added to your vault</span></div>
+              <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info"><strong>Email Notifications</strong><span>Receive all the above via email</span></div>
+              <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <button class="btn btn-gold" style="margin-top:1.5rem;"><i class="fa-solid fa-check"></i> Save Preferences</button>
+          </div>
+
+          <!-- BILLING INFO -->
+          <div class="settings-panel portal-panel" id="panel-billing">
+            <h3 style="color:var(--ivory);margin-bottom:1.5rem;font-size:1rem;"><i class="fa-solid fa-credit-card" style="color:var(--gold);margin-right:0.5rem;"></i> Billing Information</h3>
+            <div style="padding:1.25rem;background:rgba(200,169,107,0.05);border:1px solid rgba(200,169,107,0.15);border-radius:var(--radius);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);margin-bottom:0.2rem;"><i class="fa-solid fa-credit-card" style="color:var(--gold);margin-right:0.5rem;"></i>&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4821</div>
+                <div style="font-size:0.72rem;color:var(--gray-text);">Expires 08 / 2028</div>
+              </div>
+              <span style="font-size:0.72rem;color:var(--gold);font-weight:600;border:1px solid rgba(200,169,107,0.3);padding:0.2rem 0.6rem;border-radius:20px;">Primary</span>
+            </div>
+            <div class="form-group"><label>Cardholder Name</label><input type="text" value="Y. Sai Yashwanth Reddy" /></div>
+            <div class="form-group"><label>Card Number</label><input type="text" value="&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4821" /></div>
+            <div class="form-row">
+              <div class="form-group"><label>Expiry Date</label><input type="text" value="08 / 2028" /></div>
+              <div class="form-group"><label>CVV</label><input type="text" placeholder="&bull;&bull;&bull;" /></div>
+            </div>
+            <div class="form-group"><label>Billing Address</label><input type="text" value="42 Jubilee Hills, Hyderabad 500033" /></div>
+            <button class="btn btn-gold"><i class="fa-solid fa-check"></i> Update Billing Info</button>
+          </div>
+
+          <!-- DANGER ZONE -->
+          <div class="settings-panel portal-panel" id="panel-danger">
+            <h3 style="color:#EF4444;margin-bottom:1.5rem;font-size:1rem;"><i class="fa-solid fa-triangle-exclamation" style="margin-right:0.5rem;"></i> Danger Zone</h3>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div class="danger-zone">
+                <h4>Deactivate Account</h4>
+                <p>Temporarily disable your portal access. Your data will be preserved and you can reactivate anytime.</p>
+                <button class="btn-danger"><i class="fa-solid fa-eye-slash"></i> Deactivate Account</button>
+              </div>
+              <div class="danger-zone">
+                <h4>Delete All Messages</h4>
+                <p>Permanently delete all messages in your inbox. This action cannot be undone.</p>
+                <button class="btn-danger"><i class="fa-solid fa-trash"></i> Delete All Messages</button>
+              </div>
+              <div class="danger-zone">
+                <h4>Delete Account</h4>
+                <p>Permanently delete your client portal account and all associated data. This is irreversible.</p>
+                <button class="btn-danger"><i class="fa-solid fa-ban"></i> Delete My Account</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if(mobileBtn){
+      mobileBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.toggle('mobile-active');
+      });
+    }
+    const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+    if(mobileCloseBtn){
+      mobileCloseBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.remove('mobile-active');
+      });
+    }
+  </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body { background: var(--navy); overflow-x: clip; }
+    .sidebar-section-label { font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-text);padding:0 1rem;margin:1rem 0 0.4rem; }
+
+        .portal-main { height: 100vh; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; padding: 0 !important; }
+    .portal-topbar { margin: 0 !important; width: 100% !important; border-radius: 0 !important; border-left: none; border-right: none; border-top: none; }
+    .msg-layout { flex: 1; min-height: 0; display:grid;grid-template-columns:280px 1fr;gap:1.25rem; padding: 2rem; }
+    .msg-list { background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);overflow-y:auto;display:flex;flex-direction:column; min-height: 0; }
+    .msg-list-header { padding:1rem 1.25rem;border-bottom:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0; }
+    .msg-thread { padding:0.85rem 1.25rem;border-bottom:1px solid var(--glass-border);cursor:pointer;transition:var(--transition); }
+    .msg-thread:hover { background:var(--glass-hover); }
+    .msg-thread.active { background:rgba(200,169,107,0.08);border-left:2px solid var(--gold); }
+    .msg-thread.unread .msg-thread-subject { font-weight:700;color:var(--ivory); }
+    .msg-thread-from { font-size:0.8rem;font-weight:600;color:var(--ivory);margin-bottom:0.2rem;display:flex;justify-content:space-between; }
+    .msg-thread-subject { font-size:0.78rem;color:var(--ivory-dim);margin-bottom:0.2rem; }
+    .msg-thread-preview { font-size:0.72rem;color:var(--gray-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .unread-dot { width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:3px; }
+
+    /* Conversation panel */
+    .msg-conversation { background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);display:flex;flex-direction:column; min-height: 0; }
+    .msg-conv-header { padding:1rem 1.5rem;border-bottom:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0; }
+    .msg-conv-body { flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem; }
+    .msg-wrapper { display: flex; flex-direction: column; max-width: 80%; }
+    .msg-wrapper.received { align-self: flex-start; }
+    .msg-wrapper.sent { align-self: flex-end; align-items: flex-end; }
+    .msg-bubble { padding:0.85rem 1.1rem;line-height:1.6;font-size:0.85rem; }
+    .msg-bubble.received { background:var(--navy-mid);border:1px solid var(--glass-border);color:var(--ivory);border-radius:4px 16px 16px 16px; }
+    .msg-bubble.sent { background:rgba(200,169,107,0.12);border:1px solid rgba(200,169,107,0.2);color:var(--ivory);border-radius:16px 4px 16px 16px; }
+    .msg-meta { font-size:0.68rem;color:var(--gray-text);margin-top:0.3rem; }
+    .msg-conv-footer { padding:1rem 1.5rem;border-top:1px solid var(--glass-border);flex-shrink:0; }
+    .msg-compose { display:flex;gap:0.5rem;align-items:center; }
+          .msg-compose textarea {
+        flex:1;background:var(--navy-mid);border:1px solid var(--glass-border);border-radius:24px;
+        color:var(--ivory);font-family:var(--font-body);font-size:0.875rem;padding:0.7rem 1.25rem;
+        resize:none;height:46px;outline:none;transition:var(--transition);
+      }
+    .msg-compose textarea:focus { border-color:rgba(200,169,107,0.4);box-shadow:0 0 0 3px rgba(200,169,107,0.08); }
+        .msg-compose textarea::placeholder { color:var(--gray-text); }
+
+        @media (max-width: 768px) {
+        .msg-layout { display: flex !important; overflow: hidden; position: relative; padding: 0; }
+        .msg-list { width: 100%; flex-shrink: 0; transition: transform 0.3s ease; }
+        .msg-conversation { 
+          position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+          transform: translateX(100%); transition: transform 0.3s ease; 
+          z-index: 10;
+        }
+        .msg-layout.mobile-chat-active .msg-list { transform: translateX(-30%); }
+        .msg-layout.mobile-chat-active .msg-conversation { transform: translateX(0); }
+        .mobile-back-btn { display: inline-flex !important; }
+      }
+      .mobile-back-btn { display: none; background: transparent; border: none; color: var(--gold); font-size: 1.2rem; cursor: pointer; padding: 0.5rem; margin-right: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div id="cursor-glow"></div>
+  <div class="portal-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html" class="nav-logo" style="text-decoration: none;">
+          <div class="nav-logo-icon" style="color: #ffffff;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="nav-logo-text">
+            <h2 style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 0.05em; font-weight: 700; color: inherit; margin: 0; line-height: 1.2;">ATTORNEY</h2><span style="font-family: var(--font-body); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL CONSULTANT</span>
+          </div>
+        </a>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Main</div>
+        <a href="client-portal.html" class="sidebar-link"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+        <a href="portal-documents.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> Case Documents</a>
+        <a href="portal-messages.html" class="sidebar-link active"><i class="fa-solid fa-message"></i> Secure Messages <span class="sidebar-badge">2</span></a>
+        <div class="sidebar-section-label">Billing</div>
+        <a href="portal-payments.html" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices &amp; Payments</a>
+        <div class="sidebar-section-label">Scheduling</div>
+        <a href="portal-appointments.html" class="sidebar-link"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
+        <div class="sidebar-section-label">Account</div>
+        <a href="portal-settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Account Settings</a>
+      </nav>
+        <div class="sidebar-appearance" style="margin-top:auto;">
+          <div class="sidebar-section-label" style="margin-top:0;">Appearance</div>
+          <div style="padding: 0 1rem; display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <button class="btn btn-ghost rtl-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);">RTL</button>
+            <button class="btn btn-ghost theme-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);"><i class="fa-solid fa-moon"></i> Dark</button>
+          </div>
+        </div>
+      <div class="sidebar-bottom">
+        <a href="index.html" class="sidebar-link" style="color:var(--gray-text);"><i class="fa-solid fa-right-from-bracket"></i> Secure Logout</a>
+      </div>
+    </aside>
+
+    <main class="portal-main">
+      <div class="portal-topbar">
+        <div class="portal-topbar-left">
+          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.2rem;padding:0.4rem;margin-right:0.5rem;"><i class="fa-solid fa-bars"></i></button>
+          <h1>Secure Messages</h1>
+        </div>
+        <div class="portal-topbar-right">
+            <div class="topbar-separator"></div>
+          <div class="topbar-avatar"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=100&auto=format&fit=crop" alt="Client" /></div>
+            <i class="fa-solid fa-chevron-down avatar-chevron"></i>
+        </div>
+      </div>
+
+      <!-- Messaging UI -->
+      <div class="msg-layout">
+        <!-- Thread List -->
+        <div class="msg-list">
+          <div class="msg-list-header">
+            <span style="font-size:0.8rem;font-weight:600;color:var(--ivory);">Inbox</span>
+            <span class="sidebar-badge" style="margin:0;">2 new</span>
+          </div>
+
+          <div class="msg-thread unread active">
+            <div class="msg-thread-from">
+              <span>Atty. Y.S. Yashwanth</span>
+              <span style="font-size:0.68rem;color:var(--gray-text);font-weight:400;">2h ago</span>
+            </div>
+            <div class="msg-thread-subject" style="display:flex;justify-content:space-between;align-items:center;">
+              <span>Interrogatory Responses</span><div class="unread-dot"></div>
+            </div>
+            <div class="msg-thread-preview">Please review the attached interrogatory responses...</div>
+          </div>
+
+          <div class="msg-thread unread">
+            <div class="msg-thread-from">
+              <span>Reddy Law Office</span>
+              <span style="font-size:0.68rem;color:var(--gray-text);font-weight:400;">Yesterday</span>
+            </div>
+            <div class="msg-thread-subject" style="display:flex;justify-content:space-between;align-items:center;">
+              <span>Court Date Confirmed</span><div class="unread-dot"></div>
+            </div>
+            <div class="msg-thread-preview">Your next court date has been confirmed for July 15...</div>
+          </div>
+
+          <div class="msg-thread">
+            <div class="msg-thread-from">
+              <span>Atty. Y.S. Yashwanth</span>
+              <span style="font-size:0.68rem;color:var(--gray-text);font-weight:400;">Jun 1</span>
+            </div>
+            <div class="msg-thread-subject">Initial Disclosures Filed</div>
+            <div class="msg-thread-preview">Rule 26(a) disclosures have been successfully filed...</div>
+          </div>
+
+          <div class="msg-thread">
+            <div class="msg-thread-from">
+              <span>Reddy Law Office</span>
+              <span style="font-size:0.68rem;color:var(--gray-text);font-weight:400;">May 22</span>
+            </div>
+            <div class="msg-thread-subject">Discovery Documents Review</div>
+            <div class="msg-thread-preview">Please review the following discovery documents we received...</div>
+          </div>
+
+          <div class="msg-thread">
+            <div class="msg-thread-from">
+              <span>Atty. Y.S. Yashwanth</span>
+              <span style="font-size:0.68rem;color:var(--gray-text);font-weight:400;">May 10</span>
+            </div>
+            <div class="msg-thread-subject">Case Filed &mdash; FC/2026/3847</div>
+            <div class="msg-thread-preview">Your case has been formally filed with the Family Court...</div>
+          </div>
+        </div>
+
+        <!-- Active Conversation -->
+        <div class="msg-conversation">
+          <div class="msg-conv-header">
+            <div style="display: flex; align-items: center;">
+              <button class="mobile-back-btn" aria-label="Back to messages" id="mobileBackBtn"><i class="fa-solid fa-arrow-left"></i></button>
+              <div>
+                <div style="font-size:0.95rem;font-weight:700;color:var(--ivory);" id="chat-title">Interrogatory Responses</div>
+                <div style="font-size:0.72rem;color:var(--gray-text);" id="chat-meta">with Atty. Y.S. Yashwanth Reddy &bull; Jun 8, 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="msg-conv-body" id="chat-body">
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Good morning. I wanted to update you on the interrogatories we received from opposing counsel yesterday. I've prepared draft responses based on our previous discussions. Please review them carefully and let me know if you have any additions or corrections by Friday, June 12.
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; Today, 9:41 AM</div>
+            </div>
+
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                I've attached the draft document to this thread. Key points to review are items 4, 7, and 11 &mdash; those require specific dates and amounts from your personal records. Please confirm accuracy before I finalize.
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; Today, 9:43 AM</div>
+            </div>
+
+            <div class="msg-wrapper sent">
+              <div class="msg-bubble sent">
+                Thank you. I've reviewed the document. Items 4 and 7 look correct. For item 11, the amount should be &#8377;3,20,000, not &#8377;2,80,000. I'll get you the exact bank statement by tomorrow.
+              </div>
+              <div class="msg-meta">You &bull; Today, 11:20 AM</div>
+            </div>
+
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Noted, thank you. I'll update item 11 accordingly. Once I receive the bank statement, I'll finalize and file the responses. Is there anything else you'd like to address before our June 14 consultation?
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; Today, 11:35 AM</div>
+            </div>
+          </div>
+
+          <div class="msg-conv-footer">
+            <div class="msg-compose">
+              <input type="file" id="file-upload-input" style="display:none;" />
+              <textarea id="msg-input" placeholder="Type your secure message..."></textarea>
+                              <div style="display:flex;flex-direction:row;gap:0.5rem;align-items:center;">
+                  <button id="send-btn" class="btn btn-gold" style="width:44px;height:44px;border-radius:50%;padding:0;justify-content:center;"><i class="fa-solid fa-paper-plane"></i></button>
+                  <button onclick="document.getElementById('file-upload-input').click();" class="btn btn-ghost" style="width:44px;height:44px;border-radius:50%;padding:0;justify-content:center;"><i class="fa-solid fa-paperclip"></i></button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    const chatTitle = document.getElementById('chat-title');
+    const chatMeta = document.getElementById('chat-meta');
+    const sendBtn = document.getElementById('send-btn');
+    const msgInput = document.getElementById('msg-input');
+    const chatBody = document.getElementById('chat-body');
+
+    const conversations = [
+      {
+        title: "Interrogatory Responses",
+        meta: "with Atty. Y.S. Yashwanth Reddy &bull; Jun 8, 2026",
+        html: `
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Good morning. I wanted to update you on the interrogatories we received from opposing counsel yesterday. I've prepared draft responses based on our previous discussions. Please review them carefully and let me know if you have any additions or corrections by Friday, June 12.
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; Today, 9:41 AM</div>
+            </div>
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                I've attached the draft document to this thread. Key points to review are items 4, 7, and 11 &mdash; those require specific dates and amounts from your personal records. Please confirm accuracy before I finalize.
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; Today, 9:43 AM</div>
+            </div>
+            <div class="msg-wrapper sent">
+              <div class="msg-bubble sent">
+                Thank you. I've reviewed the document. Items 4 and 7 look correct. For item 11, the amount should be &#8377;3,20,000, not &#8377;2,80,000. I'll get you the exact bank statement by tomorrow.
+              </div>
+              <div class="msg-meta">You &bull; Today, 11:20 AM</div>
+            </div>
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Noted, thank you. I'll update item 11 accordingly. Once I receive the bank statement, I'll finalize and file the responses. Is there anything else you'd like to address before our June 14 consultation?
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; Today, 11:35 AM</div>
+            </div>`
+      },
+      {
+        title: "Court Date Confirmed",
+        meta: "with Reddy Law Office &bull; Yesterday",
+        html: `
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Your next court date has been confirmed for July 15 at 10:00 AM. Please make sure to be available. We will schedule a prep session beforehand.
+              </div>
+              <div class="msg-meta">Reddy Law Office &bull; Yesterday, 4:20 PM</div>
+            </div>`
+      },
+      {
+        title: "Initial Disclosures Filed",
+        meta: "with Atty. Y.S. Yashwanth &bull; Jun 1, 2026",
+        html: `
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Rule 26(a) disclosures have been successfully filed with the court today. Copies are available in your Case Documents folder.
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; Jun 1, 10:15 AM</div>
+            </div>
+            <div class="msg-wrapper sent">
+              <div class="msg-bubble sent">
+                Thanks for the update. I will review the documents tonight.
+              </div>
+              <div class="msg-meta">You &bull; Jun 1, 11:30 AM</div>
+            </div>`
+      },
+      {
+        title: "Discovery Documents Review",
+        meta: "with Reddy Law Office &bull; May 22, 2026",
+        html: `
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Please review the following discovery documents we received from the opposing party. They have produced the bank statements we requested.
+              </div>
+              <div class="msg-meta">Reddy Law Office &bull; May 22, 2:00 PM</div>
+            </div>`
+      },
+      {
+        title: "Case Filed &mdash; FC/2026/3847",
+        meta: "with Atty. Y.S. Yashwanth &bull; May 10, 2026",
+        html: `
+            <div class="msg-wrapper received">
+              <div class="msg-bubble received">
+                Your case has been formally filed with the Family Court. The assigned case number is FC/2026/3847. We will await the court's scheduling order.
+              </div>
+              <div class="msg-meta">Atty. Y.S. Yashwanth &bull; May 10, 9:00 AM</div>
+            </div>`
+      }
+    ];
+
+    document.querySelectorAll('.msg-thread').forEach((thread, index) => {
+      thread.addEventListener('click', () => {
+        document.querySelectorAll('.msg-thread').forEach(t => t.classList.remove('active'));
+        thread.classList.add('active');
+        thread.classList.remove('unread');
+        thread.querySelector('.unread-dot') && thread.querySelector('.unread-dot').remove();
+
+        const conv = conversations[index];
+        if (conv) {
+          chatTitle.innerHTML = conv.title;
+          chatMeta.innerHTML = conv.meta;
+          chatBody.innerHTML = conv.html;
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
+      });
+    });
+
+
+
+    sendBtn.addEventListener('click', () => {
+      const text = msgInput.value.trim();
+      if (text) {
+        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const newMsg = document.createElement('div');
+        newMsg.className = 'msg-wrapper sent';
+        newMsg.innerHTML = `
+          <div class="msg-bubble sent">${text}</div>
+          <div class="msg-meta">You &middot; Today, ${time}</div>
+        `;
+        chatBody.appendChild(newMsg);
+        msgInput.value = '';
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    });
+
+        msgInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendBtn.click();
+      }
+    });
+
+    // Mobile Messaging Logic
+    const msgThreadsElements = document.querySelectorAll('.msg-thread');
+    const msgLayoutContainer = document.querySelector('.msg-layout');
+    const mobileBackBtnElement = document.getElementById('mobileBackBtn');
+
+    if (msgThreadsElements.length > 0 && msgLayoutContainer && mobileBackBtnElement) {
+      msgThreadsElements.forEach(thread => {
+        thread.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            msgLayoutContainer.classList.add('mobile-chat-active');
+          }
+        });
+      });
+
+      mobileBackBtnElement.addEventListener('click', () => {
+        msgLayoutContainer.classList.remove('mobile-chat-active');
+      });
+    }
+
+    const mobileBtnElement = document.querySelector('.mobile-menu-btn');
+    if(mobileBtnElement){
+      mobileBtnElement.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.add('mobile-active');
+      });
+    }
+    const mobileCloseBtnElement = document.querySelector('.mobile-close-btn');
+    if(mobileCloseBtnElement){
+      mobileCloseBtnElement.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.remove('mobile-active');
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

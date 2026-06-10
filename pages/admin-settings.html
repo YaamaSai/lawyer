@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body { background: var(--navy); overflow-x: clip; }
+    .sidebar-section-label { font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-text);padding:0 1rem;margin:1rem 0 0.4rem; }
+
+    .settings-section { margin-bottom:2rem; }
+    .settings-section h4 { font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--glass-border); }
+
+    .settings-form input, .settings-form select, .settings-form textarea {
+      width:100%;padding:0.75rem 1rem;background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:var(--radius);color:var(--ivory);font-family:var(--font-body);font-size:0.9rem;
+      margin-bottom:0.75rem;transition:var(--transition);outline:none;
+    }
+    .settings-form input:focus, .settings-form select:focus, .settings-form textarea:focus { border-color:rgba(200,169,107,0.4);box-shadow:0 0 0 3px rgba(200,169,107,0.08); }
+    .settings-form textarea { resize:vertical;height:100px; }
+    .settings-form label { font-size:0.75rem;color:var(--gray-text);display:block;margin-bottom:0.3rem;letter-spacing:0.05em; }
+    .input-row { display:grid;grid-template-columns:1fr 1fr;gap:0.75rem; }
+
+    .toggle-row { display:flex;align-items:center;justify-content:space-between;padding:0.85rem 0;border-bottom:1px solid var(--glass-border); }
+    .toggle-row:last-child { border-bottom:none; }
+    .toggle-label { font-size:0.85rem;color:var(--ivory);font-weight:500; }
+    .toggle-sub { font-size:0.72rem;color:var(--gray-text);margin-top:0.15rem; }
+    .toggle-switch { position:relative;width:44px;height:24px;flex-shrink:0; }
+    .toggle-switch input { opacity:0;width:0;height:0; }
+    .toggle-slider { position:absolute;cursor:pointer;inset:0;background:var(--glass-border);border-radius:24px;transition:0.3s; }
+    .toggle-slider::before { content:'';position:absolute;height:18px;width:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:0.3s; }
+    .toggle-switch input:checked + .toggle-slider { background:var(--gold); }
+    .toggle-switch input:checked + .toggle-slider::before { transform:translateX(20px); }
+
+    .user-row { display:flex;align-items:center;gap:1rem;padding:0.85rem 0;border-bottom:1px solid var(--glass-border); }
+    .user-row:last-child { border-bottom:none; }
+    .user-avatar { width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0; }
+    .user-info { flex:1; }
+    .user-info .name { font-size:0.85rem;font-weight:600;color:var(--ivory); }
+    .user-info .role { font-size:0.7rem;color:var(--gray-text); }
+    .user-badge { padding:0.15rem 0.6rem;border-radius:12px;font-size:0.65rem;font-weight:600; }
+    .user-badge.admin { background:rgba(200,169,107,0.12);color:var(--gold); }
+    .user-badge.staff { background:rgba(59,130,246,0.1);color:var(--blue); }
+    .user-badge.readonly { background:rgba(255,255,255,0.05);color:var(--gray-text); }
+
+    .danger-zone { background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius);padding:1.25rem; }
+    .danger-btn { padding:0.5rem 1.2rem;background:transparent;border:1px solid rgba(239,68,68,0.4);color:#EF4444;border-radius:var(--radius);font-size:0.82rem;cursor:pointer;font-family:var(--font-body);transition:var(--transition); }
+    .danger-btn:hover { background:rgba(239,68,68,0.1); }
+  </style>
+</head>
+<body>
+  <div id="cursor-glow"></div>
+  <div class="portal-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html" class="nav-logo" style="text-decoration: none;">
+          <div class="nav-logo-icon" style="color: #ffffff;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="nav-logo-text">
+            <h2 style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 0.05em; font-weight: 700; color: inherit; margin: 0; line-height: 1.2;">ATTORNEY</h2><span style="font-family: var(--font-body); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL CONSULTANT</span>
+          </div>
+        </a>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Main</div>
+        <a href="admin-portal.html" class="sidebar-link"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+        <a href="admin-documents.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> Case Documents</a>
+        <a href="admin-messages.html" class="sidebar-link"><i class="fa-solid fa-message"></i> Secure Messages <span class="sidebar-badge">8</span></a>
+        <div class="sidebar-section-label">Billing</div>
+        <a href="admin-payments.html" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices &amp; Payments</a>
+        <div class="sidebar-section-label">Scheduling</div>
+        <a href="admin-appointments.html" class="sidebar-link"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
+        <div class="sidebar-section-label">Account</div>
+        <a href="admin-settings.html" class="sidebar-link active"><i class="fa-solid fa-gear"></i> Account Settings</a>
+      </nav>
+        <div class="sidebar-appearance" style="margin-top:auto;">
+          <div class="sidebar-section-label" style="margin-top:0;">Appearance</div>
+          <div style="padding: 0 1rem; display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <button class="btn btn-ghost rtl-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);">RTL</button>
+            <button class="btn btn-ghost theme-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);"><i class="fa-solid fa-moon"></i> Dark</button>
+          </div>
+        </div>
+      <div class="sidebar-bottom">
+        <a href="index.html" class="sidebar-link" style="color:var(--gray-text);"><i class="fa-solid fa-right-from-bracket"></i> Secure Logout</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="portal-main">
+      <div class="portal-topbar">
+        <div class="portal-topbar-left">
+          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.2rem;padding:0.4rem;margin-right:0.5rem;"><i class="fa-solid fa-bars"></i></button>
+          <h1>Account Settings</h1>
+        </div>
+        <div class="portal-topbar-right">
+          <button class="btn btn-gold" style="padding:0.5rem 1rem;font-size:0.82rem;" onclick="document.querySelector('.save-feedback').style.display='flex'"><i class="fa-solid fa-floppy-disk"></i> Save<span class="hide-on-mobile"> All Changes</span></button>
+            <div class="topbar-separator"></div>
+          <div class="topbar-avatar"><img src="https://as1.ftcdn.net/v2/jpg/06/21/32/94/1000_F_621329409_9hVy0HARwNtHSyzWGmunsJswqApvKbWb.jpg" alt="Admin" /></div>
+            <i class="fa-solid fa-chevron-down avatar-chevron"></i>
+        </div>
+      </div>
+
+      <!-- Save Feedback -->
+      <div class="save-feedback" style="display:none;align-items:center;gap:0.75rem;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:var(--radius);padding:0.75rem 1.25rem;margin-bottom:1.5rem;">
+        <i class="fa-solid fa-circle-check" style="color:var(--green);"></i>
+        <span style="font-size:0.85rem;color:var(--green);">All changes saved successfully.</span>
+      </div>
+
+      <div class="portal-grid">
+        <!-- LEFT COLUMN -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+          <!-- Firm Profile -->
+          <div class="portal-panel">
+            <div class="settings-section" style="margin-bottom:0;">
+              <h4><i class="fa-solid fa-building-columns"></i> &nbsp;Firm Profile</h4>
+              <div class="settings-form">
+                <div class="input-row">
+                  <div>
+                    <label>Firm Name</label>
+                    <input type="text" value="Reddy Law Office" />
+                  </div>
+                  <div>
+                    <label>Bar Registration No.</label>
+                    <input type="text" value="AP/BAR/2010/4821" />
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div>
+                    <label>Primary Contact Email</label>
+                    <input type="email" value="atty@reddylawoffice.com" />
+                  </div>
+                  <div>
+                    <label>Phone Number</label>
+                    <input type="tel" value="+91 98765 43210" />
+                  </div>
+                </div>
+                <div>
+                  <label>Office Address</label>
+                  <input type="text" value="4th Floor, Legal Complex, Hyderabad, Telangana 500001" />
+                </div>
+                <div>
+                  <label>Firm Bio (Appears on Client Portal)</label>
+                  <textarea>Y.S. Yashwanth Reddy is a seasoned attorney with over 15 years of expertise in Family Law, Corporate Litigation, and Criminal Defense. Our firm is committed to delivering the highest standard of legal counsel with integrity and confidentiality.</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Rates -->
+          <div class="portal-panel">
+            <div class="settings-section" style="margin-bottom:0;">
+              <h4><i class="fa-solid fa-stopwatch"></i> &nbsp;Billing Rates</h4>
+              <div class="settings-form">
+                <div class="input-row">
+                  <div>
+                    <label>Standard Consultation (per hour)</label>
+                    <input type="number" value="2500" />
+                  </div>
+                  <div>
+                    <label>Court Representation (per hour)</label>
+                    <input type="number" value="5000" />
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div>
+                    <label>Corporate Advisory (per hour)</label>
+                    <input type="number" value="3500" />
+                  </div>
+                  <div>
+                    <label>Default Retainer Fee</label>
+                    <input type="number" value="50000" />
+                  </div>
+                </div>
+                <div>
+                  <label>Currency</label>
+                  <select>
+                    <option selected>INR (&#8377; Indian Rupee)</option>
+                    <option>USD ($ US Dollar)</option>
+                    <option>EUR (&euro; Euro)</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Default Payment Due (Days after Invoice)</label>
+                  <select>
+                    <option>15 Days</option>
+                    <option selected>30 Days</option>
+                    <option>45 Days</option>
+                    <option>60 Days</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="portal-panel" style="flex:1;">
+            <div class="settings-section" style="margin-bottom:0;">
+              <h4 style="color:#EF4444;"><i class="fa-solid fa-triangle-exclamation"></i> &nbsp;Danger Zone</h4>
+              <div class="danger-zone">
+                <div style="margin-bottom:1rem;">
+                  <div style="font-size:0.85rem;color:var(--ivory);font-weight:600;margin-bottom:0.3rem;">Revoke All Client Portal Access</div>
+                  <div style="font-size:0.75rem;color:var(--gray-text);margin-bottom:0.75rem;">Immediately revoke login access for all clients. Clients will be locked out until re-invited. This cannot be undone.</div>
+                  <button class="danger-btn"><i class="fa-solid fa-ban"></i> Revoke All Access</button>
+                </div>
+                <div style="border-top:1px solid rgba(239,68,68,0.15);padding-top:1rem;margin-bottom:1rem;">
+                  <div style="font-size:0.85rem;color:var(--ivory);font-weight:600;margin-bottom:0.3rem;">Purge All Document Records</div>
+                  <div style="font-size:0.75rem;color:var(--gray-text);margin-bottom:0.75rem;">Permanently delete all uploaded documents from the firm vault. This action is irreversible and cannot be recovered.</div>
+                  <button class="danger-btn"><i class="fa-solid fa-trash-can"></i> Purge Documents</button>
+                </div>
+                <div style="border-top:1px solid rgba(239,68,68,0.15);padding-top:1rem;">
+                  <div style="font-size:0.85rem;color:var(--ivory);font-weight:600;margin-bottom:0.3rem;">Reset Admin Password</div>
+                  <div style="font-size:0.75rem;color:var(--gray-text);margin-bottom:0.75rem;">A secure password reset link will be sent to your registered admin email address immediately.</div>
+                  <button class="danger-btn"><i class="fa-solid fa-key"></i> Send Reset Link</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+          <!-- Notification Preferences -->
+          <div class="portal-panel">
+            <div class="settings-section" style="margin-bottom:0;">
+              <h4><i class="fa-solid fa-bell"></i> &nbsp;Notification Preferences</h4>
+              <div class="toggle-row">
+                <div><div class="toggle-label">New Client Lead</div><div class="toggle-sub">Alert when a new contact form is submitted</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Client Document Upload</div><div class="toggle-sub">Notify when a client uploads a file</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">New Secure Message</div><div class="toggle-sub">Email notification for unread client messages</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Invoice Overdue Alert</div><div class="toggle-sub">Get notified when an invoice exceeds due date</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Daily Hearing Summary</div><div class="toggle-sub">Morning digest of the day's hearings &amp; meetings</div></div>
+                <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Case Deadline Reminders</div><div class="toggle-sub">48-hour alert before critical case deadlines</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Weekly Revenue Report</div><div class="toggle-sub">Every Monday, receive a billing summary</div></div>
+                <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portal Access / Users -->
+          <div class="portal-panel">
+            <div class="settings-section" style="margin-bottom:0;">
+              <div class="panel-header" style="margin-bottom:1rem;">
+                <h4 style="border:none;padding:0;margin:0;"><i class="fa-solid fa-users-gear"></i> &nbsp;Portal Users</h4>
+                <button class="btn btn-ghost" style="padding:0.35rem 0.75rem;font-size:0.75rem;"><i class="fa-solid fa-plus"></i> Invite</button>
+              </div>
+              <div class="user-row">
+                <img class="user-avatar" src="https://as1.ftcdn.net/v2/jpg/06/21/32/94/1000_F_621329409_9hVy0HARwNtHSyzWGmunsJswqApvKbWb.jpg" alt="Admin">
+                <div class="user-info"><div class="name">Y.S. Yashwanth Reddy</div><div class="role">atty@reddylawoffice.com</div></div>
+                <span class="user-badge admin">Admin</span>
+              </div>
+              <div class="user-row">
+                <div style="width:38px;height:38px;border-radius:50%;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">PR</div>
+                <div class="user-info"><div class="name">Priya Rao</div><div class="role">paralegal@reddylawoffice.com</div></div>
+                <span class="user-badge staff">Staff</span>
+              </div>
+              <div class="user-row">
+                <div style="width:38px;height:38px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;color:var(--green);font-weight:700;flex-shrink:0;">AS</div>
+                <div class="user-info"><div class="name">Anjali Sharma</div><div class="role">office@reddylawoffice.com</div></div>
+                <span class="user-badge staff">Staff</span>
+              </div>
+              <div class="user-row">
+                <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:var(--gray-text);font-weight:700;flex-shrink:0;">JD</div>
+                <div class="user-info"><div class="name">John Doe</div><div class="role">john.doe@email.com &bull; Client</div></div>
+                <span class="user-badge readonly">Client</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security Settings -->
+          <div class="portal-panel">
+            <div class="settings-section" style="margin-bottom:0;">
+              <h4><i class="fa-solid fa-lock"></i> &nbsp;Security</h4>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Two-Factor Authentication</div><div class="toggle-sub">Require OTP on every login</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Session Timeout</div><div class="toggle-sub">Auto-logout after 30 min of inactivity</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div><div class="toggle-label">Audit Log</div><div class="toggle-sub">Log all admin actions for compliance</div></div>
+                <label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+              <div style="margin-top:1rem;">
+                <button class="btn btn-ghost" style="width:100%;justify-content:center;gap:0.5rem;font-size:0.82rem;"><i class="fa-solid fa-clock-rotate-left"></i> View Full Audit Log</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.querySelector('.portal-topbar-right .btn-gold').addEventListener('click', () => {
+      const fb = document.querySelector('.save-feedback');
+      fb.style.display = 'flex';
+      setTimeout(() => { fb.style.display = 'none'; }, 3000);
+    });
+  </script>
+
+  <script>
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if(mobileBtn){
+      mobileBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.toggle('mobile-active');
+      });
+    }
+    const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+    if(mobileCloseBtn){
+      mobileCloseBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.remove('mobile-active');
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

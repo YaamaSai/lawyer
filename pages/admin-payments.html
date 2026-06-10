@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body { background: var(--navy); overflow-x: clip; }
+    .sidebar-section-label { font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-text);padding:0 1rem;margin:1rem 0 0.4rem; }
+
+    .payment-card-visual {
+      background: linear-gradient(135deg, #0F2040, #1a3060);
+      border: 1px solid rgba(200,169,107,0.25); border-radius: var(--radius);
+      padding: 1.75rem; position: relative; overflow: hidden; margin-bottom: 1.25rem;
+    }
+    [data-theme="light"] .payment-card-visual {
+      background: linear-gradient(135deg, #F2EEE7, #EBE5DC);
+      border-color: rgba(154, 114, 48, 0.2);
+    }
+    .payment-card-visual::before { content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(200,169,107,0.07);border-radius:50%; }
+    .payment-card-visual::after { content:'';position:absolute;bottom:-60px;right:30px;width:120px;height:120px;background:rgba(200,169,107,0.04);border-radius:50%; }
+
+    .progress-track { width:100%;height:8px;background:var(--glass-border);border-radius:4px;overflow:hidden;margin-top:0.5rem; }
+    .progress-fill { height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); }
+
+    .invoice-row { display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.25rem;border:1px solid var(--glass-border);border-radius:var(--radius);margin-bottom:0.6rem;transition:var(--transition);background:var(--glass-bg); }
+    .invoice-row:hover { border-color:rgba(200,169,107,0.25);background:var(--glass-hover); }
+    .invoice-row.overdue { border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.03); }
+    .invoice-row.processing { border-color:rgba(59,130,246,0.2);background:rgba(59,130,246,0.03); }
+
+    .invoice-icon { width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+
+    .payment-form input, .payment-form select {
+      width:100%;padding:0.75rem 1rem;background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:var(--radius);color:var(--ivory);font-family:var(--font-body);font-size:0.9rem;
+      margin-bottom:0.75rem;transition:var(--transition);outline:none;
+    }
+    .payment-form input:focus, .payment-form select:focus { border-color:rgba(200,169,107,0.4);box-shadow:0 0 0 3px rgba(200,169,107,0.08); }
+    .payment-form label { font-size:0.75rem;color:var(--gray-text);display:block;margin-bottom:0.3rem;letter-spacing:0.05em; }
+
+    .revenue-row { display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0;border-bottom:1px solid var(--glass-border);font-size:0.82rem; }
+    .revenue-row:last-child { border-bottom:none; }
+  </style>
+</head>
+<body>
+  <div id="cursor-glow"></div>
+  <div class="portal-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html" class="nav-logo" style="text-decoration: none;">
+          <div class="nav-logo-icon" style="color: #ffffff;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="nav-logo-text">
+            <h2 style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 0.05em; font-weight: 700; color: inherit; margin: 0; line-height: 1.2;">ATTORNEY</h2><span style="font-family: var(--font-body); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL CONSULTANT</span>
+          </div>
+        </a>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Main</div>
+        <a href="admin-portal.html" class="sidebar-link"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+        <a href="admin-documents.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> Case Documents</a>
+        <a href="admin-messages.html" class="sidebar-link"><i class="fa-solid fa-message"></i> Secure Messages <span class="sidebar-badge">8</span></a>
+        <div class="sidebar-section-label">Billing</div>
+        <a href="admin-payments.html" class="sidebar-link active"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices &amp; Payments</a>
+        <div class="sidebar-section-label">Scheduling</div>
+        <a href="admin-appointments.html" class="sidebar-link"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
+        <div class="sidebar-section-label">Account</div>
+        <a href="admin-settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Account Settings</a>
+      </nav>
+        <div class="sidebar-appearance" style="margin-top:auto;">
+          <div class="sidebar-section-label" style="margin-top:0;">Appearance</div>
+          <div style="padding: 0 1rem; display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <button class="btn btn-ghost rtl-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);">RTL</button>
+            <button class="btn btn-ghost theme-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);"><i class="fa-solid fa-moon"></i> Dark</button>
+          </div>
+        </div>
+      <div class="sidebar-bottom">
+        <a href="index.html" class="sidebar-link" style="color:var(--gray-text);"><i class="fa-solid fa-right-from-bracket"></i> Secure Logout</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="portal-main">
+      <div class="portal-topbar">
+        <div class="portal-topbar-left">
+          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.2rem;padding:0.4rem;margin-right:0.5rem;"><i class="fa-solid fa-bars"></i></button>
+          <h1>Invoices &amp; Payments</h1>
+        </div>
+        <div class="portal-topbar-right">
+          <button class="btn btn-ghost" style="padding:0.5rem 0.8rem;font-size:0.8rem;"><i class="fa-solid fa-plus"></i> New Invoice</button>
+            <div class="topbar-separator"></div>
+          <div class="topbar-avatar"><img src="https://as1.ftcdn.net/v2/jpg/06/21/32/94/1000_F_621329409_9hVy0HARwNtHSyzWGmunsJswqApvKbWb.jpg" alt="Admin" /></div>
+            <i class="fa-solid fa-chevron-down avatar-chevron"></i>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="portal-cards" style="margin-bottom:2rem;">
+        <div class="portal-card">
+          <div class="portal-card-icon" style="color:var(--green);"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>MTD Revenue</h3>
+          <div class="portal-card-value">&#8377;8,50,000</div>
+          <p class="portal-card-sub success"><i class="fa-solid fa-arrow-trend-up"></i> +12% vs last month</p>
+        </div>
+        <div class="portal-card">
+          <div class="portal-card-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+          <h3>Outstanding</h3>
+          <div class="portal-card-value">&#8377;4,50,000</div>
+          <p class="portal-card-sub warning"><i class="fa-solid fa-clock"></i> 12 invoices pending</p>
+        </div>
+        <div class="portal-card">
+          <div class="portal-card-icon" style="color:#EF4444;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <h3>Overdue</h3>
+          <div class="portal-card-value">&#8377;1,10,000</div>
+          <p class="portal-card-sub" style="color:#EF4444;"><i class="fa-solid fa-circle-exclamation"></i> 3 invoices overdue</p>
+        </div>
+
+      </div>
+
+      <div class="portal-grid">
+        <!-- LEFT: Invoice History -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+          <div class="portal-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-file-invoice" style="color:var(--gold);margin-right:0.5rem;"></i> Invoice Ledger</h3>
+              <div style="display:flex;gap:0.5rem;">
+                <button class="panel-action"><i class="fa-solid fa-download"></i> Export CSV</button>
+                <button class="btn btn-gold" style="padding:0.35rem 0.8rem;font-size:0.75rem;"><i class="fa-solid fa-plus"></i> New</button>
+              </div>
+            </div>
+
+            <!-- Overdue -->
+            <div style="font-size:0.68rem;color:#EF4444;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0.75rem 0 0.4rem;">&#9888; Overdue</div>
+            <div class="invoice-row overdue">
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="invoice-icon" style="background:rgba(239,68,68,0.1);color:#EF4444;"><i class="fa-solid fa-circle-exclamation"></i></div>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);">Retainer Fee &mdash; April 2026</div>
+                  <div style="font-size:0.7rem;color:var(--gray-text);">INV-2026-038 &bull; Emily Chen &bull; Due Apr 30</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:1rem;font-weight:700;color:var(--ivory);">&#8377;50,000</div>
+                <div style="display:flex;gap:0.4rem;margin-top:0.3rem;justify-content:flex-end;">
+                  <span class="payment-status" style="background:rgba(239,68,68,0.1);color:#EF4444;padding:0.15rem 0.5rem;border-radius:12px;font-size:0.65rem;">Overdue</span>
+                  <button style="font-size:0.65rem;padding:0.15rem 0.5rem;border:1px solid rgba(239,68,68,0.3);background:transparent;color:#EF4444;border-radius:12px;cursor:pointer;font-family:var(--font-body);">Send Reminder</button>
+                </div>
+              </div>
+            </div>
+            <div class="invoice-row overdue">
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="invoice-icon" style="background:rgba(239,68,68,0.1);color:#EF4444;"><i class="fa-solid fa-circle-exclamation"></i></div>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);">Consultation Hours &mdash; Mar 2026</div>
+                  <div style="font-size:0.7rem;color:var(--gray-text);">INV-2026-031 &bull; Tech Innovations LLC &bull; Due Mar 28</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:1rem;font-weight:700;color:var(--ivory);">&#8377;60,000</div>
+                <div style="display:flex;gap:0.4rem;margin-top:0.3rem;justify-content:flex-end;">
+                  <span class="payment-status" style="background:rgba(239,68,68,0.1);color:#EF4444;padding:0.15rem 0.5rem;border-radius:12px;font-size:0.65rem;">Overdue</span>
+                  <button style="font-size:0.65rem;padding:0.15rem 0.5rem;border:1px solid rgba(239,68,68,0.3);background:transparent;color:#EF4444;border-radius:12px;cursor:pointer;font-family:var(--font-body);">Send Reminder</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Due Soon -->
+            <div style="font-size:0.68rem;color:#F59E0B;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0.75rem 0 0.4rem;">Due Soon</div>
+            <div class="invoice-row" style="border-color:rgba(245,158,11,0.2);background:rgba(245,158,11,0.03);">
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="invoice-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B;"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);">Retainer Fee &mdash; June 2026</div>
+                  <div style="font-size:0.7rem;color:var(--gray-text);">INV-2026-044 &bull; John Doe &bull; Due Jun 20</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:1rem;font-weight:700;color:var(--ivory);">&#8377;50,000</div>
+                <span class="payment-status" style="background:rgba(245,158,11,0.1);color:#F59E0B;padding:0.15rem 0.5rem;border-radius:12px;font-size:0.65rem;">Due Jun 20</span>
+              </div>
+            </div>
+            <div class="invoice-row" style="border-color:rgba(245,158,11,0.2);background:rgba(245,158,11,0.03);">
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="invoice-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B;"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);">Corporate Advisory Hours</div>
+                  <div style="font-size:0.7rem;color:var(--gray-text);">INV-2026-045 &bull; Michael Corp &bull; Due Jun 25</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:1rem;font-weight:700;color:var(--ivory);">&#8377;1,15,000</div>
+                <span class="payment-status" style="background:rgba(245,158,11,0.1);color:#F59E0B;padding:0.15rem 0.5rem;border-radius:12px;font-size:0.65rem;">Due Jun 25</span>
+              </div>
+            </div>
+
+            <!-- Paid Recently -->
+            <div style="font-size:0.68rem;color:var(--green);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0.75rem 0 0.4rem;">Recently Paid</div>
+            <div class="invoice-row">
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="invoice-icon" style="background:rgba(16,185,129,0.1);color:var(--green);"><i class="fa-solid fa-check"></i></div>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);">Retainer Fee &mdash; May 2026</div>
+                  <div style="font-size:0.7rem;color:var(--gray-text);">INV-2026-039 &bull; John Doe &bull; Paid May 5</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:1rem;font-weight:700;color:var(--ivory);">&#8377;50,000</div>
+                <span class="payment-status status-paid" style="background:rgba(16,185,129,0.1);color:var(--green);padding:0.15rem 0.5rem;border-radius:12px;font-size:0.65rem;">Paid</span>
+              </div>
+            </div>
+            <div class="invoice-row">
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="invoice-icon" style="background:rgba(16,185,129,0.1);color:var(--green);"><i class="fa-solid fa-check"></i></div>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);">Tech Innovations Retainer</div>
+                  <div style="font-size:0.7rem;color:var(--gray-text);">INV-2026-040 &bull; Tech Innovations LLC &bull; Paid May 10</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:1rem;font-weight:700;color:var(--ivory);">&#8377;4,50,000</div>
+                <span class="payment-status status-paid" style="background:rgba(16,185,129,0.1);color:var(--green);padding:0.15rem 0.5rem;border-radius:12px;font-size:0.65rem;">Paid</span>
+              </div>
+            </div>
+            <div class="invoice-row">
+              <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="invoice-icon" style="background:rgba(16,185,129,0.1);color:var(--green);"><i class="fa-solid fa-check"></i></div>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:var(--ivory);">Court Filing Fees</div>
+                  <div style="font-size:0.7rem;color:var(--gray-text);">INV-2026-042 &bull; David Patel &bull; Paid May 20</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:1rem;font-weight:700;color:var(--ivory);">&#8377;25,000</div>
+                <span class="payment-status status-paid" style="background:rgba(16,185,129,0.1);color:var(--green);padding:0.15rem 0.5rem;border-radius:12px;font-size:0.65rem;">Paid</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Create Invoice Form -->
+          <div class="portal-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-file-circle-plus" style="color:var(--gold);margin-right:0.5rem;"></i> Create New Invoice</h3>
+            </div>
+            <div class="payment-form" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.75rem;">
+              <div>
+                <label>Client Name</label>
+                <select>
+                  <option>Select Client</option>
+                  <option>John Doe</option>
+                  <option>Jane Smith</option>
+                  <option>David Patel</option>
+                  <option>Emily Chen</option>
+                  <option>Tech Innovations LLC</option>
+                </select>
+              </div>
+              <div>
+                <label>Case / Matter</label>
+                <select>
+                  <option>Select Case</option>
+                  <option>FC/2026/3847 - John Doe</option>
+                  <option>CV/2026/04 - Michael Corp</option>
+                  <option>CR/2026/55 - State vs Sharma</option>
+                </select>
+              </div>
+              <div>
+                <label>Invoice Amount (&#8377;)</label>
+                <input type="number" placeholder="0.00" style="margin-bottom:0;" />
+              </div>
+              <div>
+                <label>Due Date</label>
+                <input type="date" style="margin-bottom:0;" />
+              </div>
+              <div style="grid-column:1/-1;">
+                <label>Description of Services</label>
+                <input type="text" placeholder="e.g. Retainer Fee - June 2026, Consultation Hours..." style="margin-bottom:0;" />
+              </div>
+            </div>
+            <div style="margin-top:1rem;display:flex;gap:0.75rem;">
+              <button class="btn btn-gold" style="flex:1;justify-content:center;"><i class="fa-solid fa-paper-plane"></i> Send Invoice</button>
+              <button class="btn btn-ghost" style="justify-content:center;"><i class="fa-solid fa-eye"></i> Preview</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Revenue Summary + Rate Card -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+          <!-- Revenue Overview Card -->
+          <div class="portal-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-chart-pie" style="color:var(--gold);margin-right:0.5rem;"></i> Revenue Breakdown</h3>
+              <button class="panel-action">This Year</button>
+            </div>
+            <div class="payment-card-visual" style="margin-top:0.75rem;">
+              <div style="font-family:var(--font-heading);font-size:0.9rem;font-weight:700;color:var(--gold);margin-bottom:1.25rem;"><i class="fa-solid fa-scale-balanced"></i> ATTORNEY LEGAL</div>
+              <div style="font-size:0.72rem;color:var(--gray-text);letter-spacing:0.05em;margin-bottom:0.3rem;">YEAR-TO-DATE REVENUE</div>
+              <div style="font-size:1.8rem;font-weight:700;color:var(--ivory);">&#8377;42,75,000</div>
+              <div style="font-size:0.72rem;color:var(--green);margin-top:0.3rem;"><i class="fa-solid fa-arrow-trend-up"></i> +18% vs last year</div>
+            </div>
+            <div>
+              <div class="revenue-row"><span style="color:var(--ivory);">Family Law</span><span style="color:var(--gray-text);">&#8377;14,20,000</span></div>
+              <div class="revenue-row"><span style="color:var(--ivory);">Corporate</span><span style="color:var(--gray-text);">&#8377;18,50,000</span></div>
+              <div class="revenue-row"><span style="color:var(--ivory);">Criminal Defense</span><span style="color:var(--gray-text);">&#8377;6,30,000</span></div>
+              <div class="revenue-row"><span style="color:var(--ivory);">Estate Planning</span><span style="color:var(--gray-text);">&#8377;3,75,000</span></div>
+              <div style="margin-top:0.5rem;">
+                <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.3rem;"><span style="color:var(--ivory);">Annual Goal: &#8377;60,00,000</span><span style="color:var(--gold);">71%</span></div>
+                <div class="progress-track"><div class="progress-fill" style="width:71%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Rate Card -->
+          <div class="portal-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-stopwatch" style="color:var(--gold);margin-right:0.5rem;"></i> Billing Rates</h3>
+              <a href="admin-settings.html" class="panel-action">Edit</a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0.9rem;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);">
+                <span style="font-size:0.82rem;color:var(--ivory);">Standard Consultation</span>
+                <span style="font-size:0.9rem;font-weight:700;color:var(--gold);">&#8377;2,500/hr</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0.9rem;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);">
+                <span style="font-size:0.82rem;color:var(--ivory);">Court Representation</span>
+                <span style="font-size:0.9rem;font-weight:700;color:var(--gold);">&#8377;5,000/hr</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0.9rem;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);">
+                <span style="font-size:0.82rem;color:var(--ivory);">Corporate Advisory</span>
+                <span style="font-size:0.9rem;font-weight:700;color:var(--gold);">&#8377;3,500/hr</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0.9rem;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);">
+                <span style="font-size:0.82rem;color:var(--ivory);">Initial Consultation</span>
+                <span style="font-size:0.9rem;font-weight:700;color:var(--green);">FREE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Transactions -->
+          <div class="portal-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-receipt" style="color:var(--gold);margin-right:0.5rem;"></i> Quick Actions</h3>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem;">
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:0.75rem;font-size:0.83rem;padding:0.65rem 1rem;"><i class="fa-solid fa-bell" style="color:#F59E0B;"></i> Send Payment Reminders (3)</button>
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:0.75rem;font-size:0.83rem;padding:0.65rem 1rem;"><i class="fa-solid fa-file-export" style="color:var(--blue);"></i> Export Full Ledger (PDF)</button>
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:0.75rem;font-size:0.83rem;padding:0.65rem 1rem;"><i class="fa-solid fa-rotate" style="color:var(--green);"></i> Reconcile Payments</button>
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:0.75rem;font-size:0.83rem;padding:0.65rem 1rem;"><i class="fa-solid fa-chart-column" style="color:var(--gold);"></i> View Revenue Analytics</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if(mobileBtn){
+      mobileBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.toggle('mobile-active');
+      });
+    }
+    const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+    if(mobileCloseBtn){
+      mobileCloseBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.remove('mobile-active');
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

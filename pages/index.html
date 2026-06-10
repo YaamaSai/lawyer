@@ -1,0 +1,607 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">
+  <meta name="description"
+    content="Y Sai Yashwanth Reddy â€“ Trusted solo attorney specializing in Family Law and Estate Planning. Compassionate counsel, proven results." />
+  <meta name="keywords"
+    content="family law attorney, estate planning lawyer, Y Sai Yashwanth Reddy, legal consultation" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader">
+    <div class="loader-logo">ATTORNEY</div>
+    <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-top:-0.5rem;">
+      LEGAL CONSULTANT</div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <!-- Cursor Glow -->
+  <div id="cursor-glow"></div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="nav-logo-text">
+          <h2
+            style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.05em; font-weight: 700; color: var(--ivory); margin: 0; line-height: 1.2;">
+            ATTORNEY</h2><span
+            style="font-family: var(--font-body); font-size: 0.65rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL
+            CONSULTANT</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="nav-links">
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link active">Home <i class="fa-solid fa-chevron-down"
+              style="font-size:0.7em; margin-left:0.3em;"></i></a>
+          <div class="dropdown-menu">
+            <a href="index.html" class="dropdown-item">Home 1</a>
+            <a href="index2.html" class="dropdown-item">Home 2</a>
+          </div>
+        </div>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="practice-areas.html" class="nav-link">Practice Areas</a>
+        <a href="blog.html" class="nav-link">Insights</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link">Dashboard <i class="fa-solid fa-chevron-down"
+              style="font-size:0.7em; margin-left:0.3em;"></i></a>
+          <div class="dropdown-menu">
+            <a href="admin-portal.html" class="dropdown-item">Admin Portal</a>
+            <a href="client-portal.html" class="dropdown-item">Client Portal</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <button class="btn btn-ghost theme-toggle-btn" style="padding:0.5rem 0.8rem;font-weight:600;"><i
+            class="fa-solid fa-sun"></i> Light</button>
+        <button class="btn btn-ghost rtl-toggle-btn" style="padding: 0.5rem 0.8rem; font-weight: 600;">RTL</button>
+        <a href="login.html" class="btn btn-gold" style="padding:0.6rem 1.4rem;">
+          <i class="fa-solid fa-lock"></i> Login
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html" class="mobile-menu-logo"
+        style="position:absolute; top:1rem; left:0; right:0; justify-content:center; display:flex; align-items:center; gap:0.5rem; text-decoration:none; z-index:1000; padding-right: 2rem;">
+        <div class="nav-logo-icon"
+          style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--gold);color:var(--navy);border-radius:4px;">
+          <i class="fa-solid fa-scale-balanced" style="font-size:0.85rem;"></i></div>
+        <div class="nav-logo-text" style="display:flex; flex-direction:column;">
+          <h2
+            style="font-family:var(--font-heading); font-size:1.1rem; letter-spacing:0.05em; font-weight:700; color:var(--ivory); margin:0; line-height:1;">
+            ATTORNEY</h2>
+          <span
+            style="font-family:var(--font-body); font-size:0.45rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin:0; margin-top:3px;">LEGAL
+            CONSULTANT</span>
+        </div>
+      </a>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-btn">Home <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="mobile-dropdown-content">
+          <a href="index.html" class="sub-link">Home 1</a>
+          <a href="index2.html" class="sub-link">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="practice-areas.html">Practice Areas</a>
+      <a href="blog.html">Insights</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-btn">Dashboard <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="mobile-dropdown-content">
+          <a href="admin-portal.html" class="sub-link">Admin Portal</a>
+          <a href="client-portal.html" class="sub-link">Client Portal</a>
+        </div>
+      </div>
+      <div style="flex:1;"></div>
+      <div class="mobile-actions" style="display:flex; gap:0.5rem; margin-bottom:0.5rem;">
+        <button class="btn btn-ghost theme-toggle-btn" style="flex:1; justify-content:center; min-height:44px;"><i
+            class="fa-solid fa-sun"></i> Light</button>
+        <button class="btn btn-ghost rtl-toggle-btn"
+          style="flex:1; justify-content:center; min-height:44px;">RTL</button>
+      </div>
+      <a href="login.html" class="btn btn-gold"
+        style="padding:0.6rem 1.4rem; width:100%; justify-content:center; margin-top:0.5rem; color:white;"><i
+          class="fa-solid fa-lock"></i> Login</a>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="hero-particles"></div>
+
+    <div class="hero-content">
+      <!-- Left -->
+      <div class="hero-left">
+        <div class="hero-badge fade-in">
+          <span class="hero-badge-dot"></span>
+          <span>Trusted Legal Counsel Since 2008</span>
+        </div>
+
+        <h1 class="hero-title fade-in delay-1">
+          Protecting Your <span class="gold-text">Family</span>.<br />
+          Securing Your <span class="gold-text">Legacy</span>.
+        </h1>
+
+        <p class="hero-subtitle fade-in delay-2">
+          Y Sai Yashwanth Reddy provides compassionate, strategic legal representation in Family Law and Estate Planning
+          with the dedication and personal attention your case deserves.
+        </p>
+
+        <div class="hero-ctas fade-in delay-3">
+          <a href="contact.html" class="btn btn-gold">
+            <i class="fa-solid fa-calendar-check"></i> Schedule Consultation
+          </a>
+          <a href="practice-areas.html" class="btn btn-outline">
+            Explore Services <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="hero-stats fade-in delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="15+">0</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="900+">0</div>
+            <div class="hero-stat-label">Cases Resolved</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="98%">0</div>
+            <div class="hero-stat-label">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right fade-in-right">
+        <div class="hero-portrait-wrap">
+          <div class="hero-decoration-ring"></div>
+          <div class="hero-portrait-frame">
+            <img src="https://as1.ftcdn.net/v2/jpg/06/21/32/94/1000_F_621329409_9hVy0HARwNtHSyzWGmunsJswqApvKbWb.jpg"
+              alt="Y Sai Yashwanth Reddy â€“ Attorney at Law" />
+          </div>
+          <div class="hero-floating-badge">
+            <div class="hero-floating-badge-icon">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div>
+              <p>Bar Association</p>
+              <p>Certified Member</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRACTICE AREAS ===================== -->
+  <section class="practice-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Our Expertise</span>
+        <h2 class="section-title">Practice Areas</h2>
+        <div class="section-divider"></div>
+        <p style="color:var(--gray-text);max-width:540px;margin:0 auto;font-size:0.95rem;line-height:1.8;">
+          Focused, personalized legal representation tailored to the most meaningful aspects of your life and future.
+        </p>
+      </div>
+
+      <div class="practice-grid">
+
+        <div class="glass-card practice-card tilt-card fade-in delay-1">
+          <div class="practice-icon"><i class="fa-solid fa-users-between-lines"></i></div>
+          <h3>Family Law</h3>
+          <p>Compassionate counsel in divorce, child custody, spousal support, and property division. We guide you
+            through life's most challenging transitions with care and clarity.</p>
+          <ul
+            style="margin:0 auto 1.5rem auto;color:var(--gray-text);font-size:0.85rem;display:flex;width:max-content;flex-direction:column;align-items:flex-start;text-align:left;gap:0.4rem;">
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Divorce & Separation
+            </li>
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Child Custody & Support
+            </li>
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Prenuptial Agreements
+            </li>
+          </ul>
+          <a href="practice-areas.html" class="practice-learn">
+            Learn More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="glass-card practice-card tilt-card fade-in delay-2">
+          <div class="practice-icon"><i class="fa-solid fa-file-contract"></i></div>
+          <h3>Estate Planning</h3>
+          <p>Protect your assets, honor your wishes, and provide certainty for your loved ones. We craft comprehensive
+            estate plans that stand the test of time.</p>
+          <ul
+            style="margin:0 auto 1.5rem auto;color:var(--gray-text);font-size:0.85rem;display:flex;width:max-content;flex-direction:column;align-items:flex-start;text-align:left;gap:0.4rem;">
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Wills & Trusts</li>
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Power of Attorney</li>
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Probate Administration
+            </li>
+          </ul>
+          <a href="practice-areas.html" class="practice-learn">
+            Learn More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="glass-card practice-card tilt-card fade-in delay-3">
+          <div class="practice-icon"><i class="fa-solid fa-gavel"></i></div>
+          <h3>Dispute Resolution</h3>
+          <p>Strategic litigation and mediation to resolve family-related disputes efficiently. Protecting your rights
+            at every stage of the legal process.</p>
+          <ul
+            style="margin:0 auto 1.5rem auto;color:var(--gray-text);font-size:0.85rem;display:flex;width:max-content;flex-direction:column;align-items:flex-start;text-align:left;gap:0.4rem;">
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Family Court Litigation
+            </li>
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Mediation & Arbitration
+            </li>
+            <li><i class="fa-solid fa-check" style="color:var(--gold);margin-right:0.5rem;"></i>Estate Disputes</li>
+          </ul>
+          <a href="practice-areas.html" class="practice-learn">
+            Learn More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:3rem;" class="fade-in">
+        <a href="practice-areas.html" class="btn btn-outline">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT PREVIEW ===================== -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-img-wrap fade-in-left">
+          <div class="about-img-frame">
+            <img src="https://as1.ftcdn.net/v2/jpg/14/06/92/76/1000_F_1406927666_hwGujrDztznRoMei7pSoPlf8gHJhwkKM.jpg"
+              alt="Legal Counsel â€“ Professional Setting" />
+          </div>
+          <div class="about-credential-card">
+            <h4>15+</h4>
+            <p>Years Practicing Law</p>
+          </div>
+        </div>
+
+        <div class="fade-in-right">
+          <span class="section-label">The Attorney</span>
+          <h2 class="section-title">Y Sai Yashwanth Reddy, Esq.</h2>
+          <div class="section-divider left"></div>
+          <p style="color:var(--gray-text);line-height:1.9;font-size:0.95rem;margin-bottom:2rem;">
+            With over 15 years of dedicated practice in Family and Estate Law, Y Sai Yashwanth Reddy has built a
+            reputation for relentless client advocacy and meticulous legal craftsmanship. As a solo practitioner, every
+            client receives direct, personal attention â€” not passed off to a junior associate.
+          </p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fa-solid fa-user-secret"></i></div>
+              <div class="about-feature-text">
+                <h4>Absolute Confidentiality</h4>
+                <p>All client matters are handled with the highest level of discretion. Your case stays private â€”
+                  always.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fa-solid fa-handshake"></i></div>
+              <div class="about-feature-text">
+                <h4>Personalized Attention</h4>
+                <p>As a solo attorney, you work directly with Mr. Reddy from the first consultation through final
+                  resolution.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fa-solid fa-chess-knight"></i></div>
+              <div class="about-feature-text">
+                <h4>Strategic Approach</h4>
+                <p>Every case is approached with a customized strategy built around your specific goals and
+                  circumstances.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:2.5rem;" class="mobile-center-container">
+            <a href="about.html" class="btn btn-gold"><i class="fa-solid fa-user-tie"></i> Attorney Profile</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STATISTICS ===================== -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-in">
+          <div class="stat-number" data-count="98%">0</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div class="stat-item fade-in delay-1">
+          <div class="stat-number" data-count="900+">0</div>
+          <div class="stat-label">Cases Resolved</div>
+        </div>
+        <div class="stat-item fade-in delay-2">
+          <div class="stat-number" data-count="15+">0</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item fade-in delay-3">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Client Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY CHOOSE US ===================== -->
+  <section style="background:var(--navy);padding:6rem 0;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">A Different Kind of Law Firm</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="responsive-3col">
+        <div class="glass-card" style="padding:2.5rem;text-align:center;" class="fade-in delay-1">
+          <div
+            style="width:72px;height:72px;border-radius:50%;background:rgba(200,169,107,0.1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin:0 auto 1.5rem;">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Trusted Advocacy</h3>
+          <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">Unwavering commitment to your rights and
+            best interests â€” in court and at the negotiating table.</p>
+        </div>
+
+        <div class="glass-card fade-in delay-2" style="padding:2.5rem;text-align:center;">
+          <div
+            style="width:72px;height:72px;border-radius:50%;background:rgba(200,169,107,0.1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin:0 auto 1.5rem;">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Clear Communication</h3>
+          <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">No legal jargon. No surprises. We keep
+            you fully informed at every stage of your case.</p>
+        </div>
+
+        <div class="glass-card fade-in delay-3" style="padding:2.5rem;text-align:center;">
+          <div
+            style="width:72px;height:72px;border-radius:50%;background:rgba(200,169,107,0.1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin:0 auto 1.5rem;">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.75rem;">Secure Client Portal</h3>
+          <p style="font-size:0.875rem;color:var(--gray-text);line-height:1.8;">Upload documents, track progress, make
+            payments, and schedule consultations â€” all in one secure dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <i class="fa-solid fa-quote-right"
+          style="font-size:2.5rem;color:rgba(200,169,107,0.25);margin-bottom:1rem;"></i>
+        <h2 class="section-title">What Clients Say</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="glass-card testimonial-card tilt-card fade-in delay-1">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-quote">"Mr. Reddy guided me through a difficult divorce with patience and expertise. His
+            calm, strategic approach helped me secure a fair custody arrangement for my children. I cannot thank him
+            enough."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PK</div>
+            <div>
+              <p class="testimonial-author-name">Priya K.</p>
+              <p class="testimonial-author-role">Family Law Client</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card testimonial-card tilt-card fade-in delay-2">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-quote">"Yashwanth handled our estate planning with incredible thoroughness. He
+            anticipated issues we hadn't even considered and ensured our assets would pass seamlessly to our family.
+            Highly professional."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AR</div>
+            <div>
+              <p class="testimonial-author-name">Anil R.</p>
+              <p class="testimonial-author-role">Estate Planning Client</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card testimonial-card tilt-card fade-in delay-1">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p class="testimonial-quote">"The secure client portal made everything so easy. I could upload documents,
+            review my case timeline, and communicate with Mr. Reddy â€” all without having to come into the office every
+            time."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SM</div>
+            <div>
+              <p class="testimonial-author-name">Sunita M.</p>
+              <p class="testimonial-author-role">Probate Client</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card testimonial-card tilt-card fade-in delay-2">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-quote">"When my father passed, I was overwhelmed with grief and paperwork. Yashwanth
+            took everything off my plate and made the probate process painless. He treated our family with genuine
+            compassion."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RV</div>
+            <div>
+              <p class="testimonial-author-name">Rajan V.</p>
+              <p class="testimonial-author-role">Probate & Estate Client</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box fade-in">
+        <span class="section-label">Take Action Today</span>
+        <h2>Your Legal Matter Deserves<br /><span class="gold-text">Personal Attention</span></h2>
+        <p>Schedule a confidential consultation with Attorney Y Sai Yashwanth Reddy. We'll review your situation and
+          outline a clear strategy â€” with no obligation.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-gold">
+            <i class="fa-solid fa-calendar-check"></i> Book Free Consultation
+          </a>
+          <a href="tel:+919876543210" class="btn btn-outline">
+            <i class="fa-solid fa-phone"></i> +91 987 654 3210
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+            <div class="nav-logo-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="nav-logo-text">
+              <h2 style="font-family:var(--font-heading);font-weight:700;font-size:1.2rem;line-height:1;margin:0;">
+                ATTORNEY</h2>
+              <div style="font-size:0.55rem;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;">LEGAL
+                CONSULTANT</div>
+            </div>
+          </div>
+          <p>Compassionate, strategic legal representation in Family Law and Estate Planning. Your family's future is
+            our priority.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 style="color: whitesmoke;">Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About the Attorney</a></li>
+            <li><a href="practice-areas.html">Practice Areas</a></li>
+            <li><a href="blog.html">Legal Insights</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="client-portal.html">Client Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style="color: whitesmoke;">Practice Areas</h4>
+          <ul>
+            <li><a href="practice-areas.html">Family Law</a></li>
+            <li><a href="practice-areas.html">Divorce & Separation</a></li>
+            <li><a href="practice-areas.html">Child Custody</a></li>
+            <li><a href="practice-areas.html">Estate Planning</a></li>
+            <li><a href="practice-areas.html">Wills & Trusts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style="color: whitesmoke;">Contact</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Suite 204, Legal Tower,<br />Hyderabad, Telangana 500001</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+919876543210" style="color:var(--gray-text);transition:var(--transition);"
+              onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gray-text)'">+91 987 654
+              3210</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:yashwanth@reddy-law.in" style="color:var(--gray-text);transition:var(--transition);"
+              onmouseover="this.style.color='var(--gold)'"
+              onmouseout="this.style.color='var(--gray-text)'">yashwanth@reddy-law.in</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-regular fa-clock"></i>
+            <span>Monâ€“Sat: 9:00 AM â€“ 7:00 PM</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>Â© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+          <a href="#">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

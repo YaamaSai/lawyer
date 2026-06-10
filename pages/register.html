@@ -1,0 +1,585 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>âš–ï¸</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body {
+      zoom: 0.9;
+    }
+
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=2000');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding: 2rem;
+    }
+
+    .auth-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(15, 30, 58, 0.5));
+      z-index: 1;
+    }
+
+    [data-theme="light"] .auth-overlay {
+      background: linear-gradient(135deg, rgba(250, 248, 244, 0.8), rgba(245, 239, 230, 0.5));
+    }
+
+    [data-theme="light-2"] .auth-overlay {
+      background: linear-gradient(135deg, rgba(248, 249, 255, 0.8), rgba(228, 232, 247, 0.5));
+    }
+
+    .auth-card {
+      position: relative;
+      z-index: 10;
+      background: #FAF8F4;
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 4rem;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.8s ease-out forwards;
+      color: #1C1814;
+    }
+
+    [data-theme="dark"] .auth-card {
+      background: rgba(15, 30, 58, 0.95);
+      border: 1px solid rgba(200, 169, 107, 0.3);
+      color: var(--ivory);
+    }
+
+    [data-theme="light-2"] .auth-card {
+      background: #FFFFFF;
+      box-shadow: 0 30px 60px rgba(79, 70, 229, 0.1);
+    }
+
+    .auth-title {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1C1814;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    [data-theme="dark"] .auth-title {
+      color: var(--ivory);
+    }
+
+    [data-theme="light-2"] .auth-title {
+      color: #0F0E1A;
+    }
+
+    .auth-hr {
+      border: none;
+      border-top: 1px solid #E0DCD3;
+      margin: 1.5rem 0;
+    }
+
+    [data-theme="dark"] .auth-hr {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light-2"] .auth-hr {
+      border-top-color: rgba(79, 70, 229, 0.1);
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    [data-theme="dark"] .auth-subtitle {
+      color: var(--gray-text);
+    }
+
+    .social-logins {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      background: #F3EFE6;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      color: #1C1814;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .btn-social {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--ivory);
+    }
+
+    [data-theme="light-2"] .btn-social {
+      background: #F8F9FF;
+      border-color: rgba(79, 70, 229, 0.1);
+      color: #0F0E1A;
+    }
+
+    .btn-social:hover {
+      background: #EBE5DC;
+      transform: translateY(-2px);
+    }
+
+    [data-theme="dark"] .btn-social:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light-2"] .btn-social:hover {
+      background: #EEF0FA;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 1.5rem 0;
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #E0DCD3;
+    }
+
+    [data-theme="dark"] .divider::before,
+    [data-theme="dark"] .divider::after {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light-2"] .divider::before,
+    [data-theme="light-2"] .divider::after {
+      border-bottom-color: rgba(79, 70, 229, 0.1);
+    }
+
+    .divider::not(:empty)::before {
+      margin-inline-end: 1em;
+    }
+
+    .divider::not(:empty)::after {
+      margin-inline-start: 1em;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+      text-align: start;
+    }
+
+    .form-group.half-width {
+      flex: 1;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-row .form-group {
+      margin-bottom: 0;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    [data-theme="dark"] .form-group label {
+      color: var(--ivory-dim);
+    }
+
+    .form-group label .optional {
+      text-transform: none;
+      font-weight: 400;
+      letter-spacing: normal;
+      color: #999;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .form-control {
+      width: 100%;
+      background: #F3EFE6;
+      border: 1px solid transparent;
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius);
+      color: #1C1814;
+      font-family: var(--font-body);
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    [data-theme="dark"] .form-control {
+      background: rgba(10, 22, 40, 0.4);
+      border-color: rgba(200, 169, 107, 0.2);
+      color: var(--ivory);
+    }
+
+    [data-theme="light-2"] .form-control {
+      background: #F8F9FF;
+      border-color: rgba(79, 70, 229, 0.1);
+      color: #0F0E1A;
+    }
+
+    html[dir="rtl"] input[type="tel"] {
+      text-align: right;
+    }
+
+    .form-control:focus {
+      outline: none;
+      background: #fff;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200, 169, 107, 0.2);
+    }
+
+    [data-theme="dark"] .form-control:focus {
+      background: rgba(10, 22, 40, 0.8);
+    }
+
+    [data-theme="light-2"] .form-control:focus {
+      border-color: #4F46E5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    .toggle-password {
+      position: absolute;
+      inset-inline-end: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .form-row-checkbox {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #666;
+      cursor: pointer;
+    }
+
+    [data-theme="dark"] .checkbox-label {
+      color: var(--ivory-dim);
+    }
+
+    .checkbox-label input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .checkbox-label a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    [data-theme="light-2"] .checkbox-label a {
+      color: #4F46E5;
+    }
+
+    .checkbox-label a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: #A68A56;
+      color: #fff;
+      padding: 1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: #8E7343;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    [data-theme="dark"] .auth-footer {
+      color: var(--ivory-dim);
+    }
+
+    .auth-footer a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    [data-theme="light-2"] .auth-footer a {
+      color: #4F46E5;
+    }
+
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top controls pill style */
+    .auth-controls {
+      position: absolute;
+      top: 2rem;
+      inset-inline-start: 2rem;
+      /* Positioned on the start edge */
+      display: flex;
+      gap: 0.5rem;
+      z-index: 20;
+    }
+
+    .control-pill {
+      height: 44px;
+      border-radius: 22px;
+      background: #FAF8F4;
+      border: none;
+      color: #1C1814;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0 1.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .control-pill.icon-only {
+      width: 44px;
+      padding: 0;
+    }
+
+    .control-pill.gold {
+      background: #B3925A;
+      color: #fff;
+    }
+
+    .control-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .auth-page {
+        flex-direction: column;
+      }
+
+      .auth-controls {
+        position: relative;
+        top: auto;
+        inset-inline-end: auto;
+        align-self: flex-end;
+        margin-bottom: 1rem;
+      }
+
+      .auth-card {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .social-logins {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+      }
+
+      .btn-social {
+        padding: 0.6rem 0.2rem;
+        font-size: 0.75rem;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="auth-page">
+    <div class="auth-overlay"></div>
+
+    <div class="auth-controls">
+      <button class="control-pill gold rtl-toggle-btn" aria-label="Toggle RTL">RTL</button>
+      <button class="control-pill icon-only theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme"><i
+          class="fa-solid fa-moon"></i></button>
+    </div>
+
+    <div class="auth-card">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <a href="index.html" class="nav-logo"
+          style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; justify-content: center;">
+          <div class="nav-logo-icon" style="color: #ffffff;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="nav-logo-text" style="text-align: left;">
+            <h2
+              style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.05em; font-weight: 700; color: inherit; margin: 0; line-height: 1.1;">
+              ATTORNEY</h2><span
+              style="font-family: var(--font-body); font-size: 0.65rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0; display: block; margin-top: 2px;">LEGAL
+              CONSULTANT</span>
+          </div>
+        </a>
+      </div>
+      <hr class="auth-hr" />
+      <h1 class="auth-title">Create Account</h1>
+      <p class="auth-subtitle">Register to begin your secure consultation.</p>
+
+      <div class="social-logins">
+        <button class="btn-social">
+          <img src="https://img.icons8.com/color/20/000000/google-logo.png" alt="Google"> Google
+        </button>
+        <button class="btn-social">
+          <i class="fa-brands fa-apple" style="font-size: 1.2rem;"></i> Apple
+        </button>
+        <button class="btn-social">
+          <i class="fa-brands fa-facebook" style="color: #1877F2; font-size: 1.1rem;"></i> Facebook
+        </button>
+      </div>
+
+      <div class="divider">or sign up with email</div>
+
+      <form action="client-portal.html" method="GET">
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" class="form-control" placeholder="James" required />
+          </div>
+          <div class="form-group half-width">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" class="form-control" placeholder="Whitmore" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" class="form-control" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone <span class="optional">(optional)</span></label>
+          <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 000-0000" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="password" class="form-control" placeholder="Create a password" required />
+            <i class="fa-solid fa-eye toggle-password"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password"
+              required />
+            <i class="fa-solid fa-eye toggle-password"></i>
+          </div>
+        </div>
+
+        <div class="form-row-checkbox">
+          <label class="checkbox-label" style="align-items: flex-start;">
+            <input type="checkbox" required style="margin-top: 0.25rem;" />
+            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit">Create Account</button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Sign in</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Simple password toggle logic
+    document.querySelectorAll('.toggle-password').forEach(icon => {
+      icon.addEventListener('click', function () {
+        const input = this.previousElementSibling;
+        if (input.type === 'password') {
+          input.type = 'text';
+          this.classList.remove('fa-eye');
+          this.classList.add('fa-eye-slash');
+        } else {
+          input.type = 'password';
+          this.classList.remove('fa-eye-slash');
+          this.classList.add('fa-eye');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+

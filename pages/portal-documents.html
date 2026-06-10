@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body { background: var(--navy); overflow-x: clip; }
+
+    .sidebar-section-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gray-text);
+      padding: 0 1rem; margin: 1rem 0 0.4rem;
+    }
+
+    .doc-filter-bar {
+      display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .doc-filter-btn {
+      padding: 0.4rem 1rem; border-radius: 20px; border: 1px solid var(--glass-border);
+      background: var(--glass-bg); color: var(--gray-text); font-size: 0.78rem;
+      cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+    }
+    .doc-filter-btn.active, .doc-filter-btn:hover {
+      background: rgba(200,169,107,0.12); color: var(--gold); border-color: rgba(200,169,107,0.3);
+    }
+
+    .doc-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .doc-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); padding: 1.25rem;
+      transition: var(--transition); cursor: pointer;
+    }
+    .doc-card:hover { border-color: rgba(200,169,107,0.3); background: var(--glass-hover); }
+    .doc-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .doc-card-icon.pdf { color: #EF4444; }
+    .doc-card-icon.doc { color: var(--blue); }
+    .doc-card-icon.img { color: var(--green); }
+    .doc-card-icon.sheet { color: var(--gold); }
+    .doc-card-name { font-size: 0.85rem; font-weight: 600; color: var(--ivory); margin-bottom: 0.3rem; word-break: break-all; }
+    .doc-card-meta { font-size: 0.7rem; color: var(--gray-text); }
+    .doc-card-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .doc-card-actions button {
+      flex: 1; padding: 0.4rem; border: 1px solid var(--glass-border);
+      background: transparent; color: var(--gray-text); border-radius: 6px;
+      font-size: 0.75rem; cursor: pointer; transition: var(--transition);
+      font-family: var(--font-body);
+    }
+    .doc-card-actions button:hover { color: var(--gold); border-color: rgba(200,169,107,0.3); }
+
+    .upload-zone {
+      border: 2px dashed rgba(200,169,107,0.3); border-radius: var(--radius);
+      padding: 3rem 2rem; text-align: center; cursor: pointer;
+      transition: var(--transition); color: var(--gray-text);
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--gold); background: rgba(200,169,107,0.05);
+    }
+    .upload-zone i { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; display: block; }
+
+    .progress-bar-wrap { margin-top: 1rem; }
+    .progress-track { width: 100%; height: 6px; background: var(--glass-border); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); }
+  </style>
+</head>
+<body>
+  <div id="cursor-glow"></div>
+  <div class="portal-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html" class="nav-logo" style="text-decoration: none;">
+          <div class="nav-logo-icon" style="color: #ffffff;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="nav-logo-text">
+            <h2 style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 0.05em; font-weight: 700; color: inherit; margin: 0; line-height: 1.2;">ATTORNEY</h2><span style="font-family: var(--font-body); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL CONSULTANT</span>
+          </div>
+        </a>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Main</div>
+        <a href="client-portal.html" class="sidebar-link"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+        <a href="portal-documents.html" class="sidebar-link active"><i class="fa-solid fa-folder-open"></i> Case Documents</a>
+        <a href="portal-messages.html" class="sidebar-link"><i class="fa-solid fa-message"></i> Secure Messages <span class="sidebar-badge">2</span></a>
+        <div class="sidebar-section-label">Billing</div>
+        <a href="portal-payments.html" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices &amp; Payments</a>
+        <div class="sidebar-section-label">Scheduling</div>
+        <a href="portal-appointments.html" class="sidebar-link"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
+        <div class="sidebar-section-label">Account</div>
+        <a href="portal-settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Account Settings</a>
+      </nav>
+        <div class="sidebar-appearance" style="margin-top:auto;">
+          <div class="sidebar-section-label" style="margin-top:0;">Appearance</div>
+          <div style="padding: 0 1rem; display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <button class="btn btn-ghost rtl-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);">RTL</button>
+            <button class="btn btn-ghost theme-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);"><i class="fa-solid fa-moon"></i> Dark</button>
+          </div>
+        </div>
+      <div class="sidebar-bottom">
+        <a href="index.html" class="sidebar-link" style="color:var(--gray-text);"><i class="fa-solid fa-right-from-bracket"></i> Secure Logout</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="portal-main">
+      <div class="portal-topbar">
+        <div class="portal-topbar-left">
+          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.2rem;padding:0.4rem;margin-right:0.5rem;"><i class="fa-solid fa-bars"></i></button>
+          <h1>Case Documents</h1>
+        </div>
+        <div class="portal-topbar-right">
+            <div class="topbar-separator"></div>
+          <div class="topbar-avatar">
+            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=100&auto=format&fit=crop" alt="Client" />
+          </div>
+            <i class="fa-solid fa-chevron-down avatar-chevron"></i>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="portal-cards" style="margin-bottom:2rem;">
+        <div class="portal-card">
+          <div class="portal-card-icon"><i class="fa-solid fa-file"></i></div>
+          <h3>Total Files</h3>
+          <div class="portal-card-value">12</div>
+          <p class="portal-card-sub">4 added this month</p>
+        </div>
+        <div class="portal-card">
+          <div class="portal-card-icon"><i class="fa-solid fa-database"></i></div>
+          <h3>Storage Used</h3>
+          <div class="portal-card-value">18.4 MB</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-track"><div class="progress-fill" style="width:18%;"></div></div>
+          </div>
+          <p style="font-size:0.65rem;color:var(--gray-text);margin-top:0.4rem;">of 100 MB</p>
+        </div>
+        <div class="portal-card">
+          <div class="portal-card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <h3>Last Upload</h3>
+          <div class="portal-card-value" style="font-size:1.1rem;">Today</div>
+          <p class="portal-card-sub">Interrogatories_June2026.pdf</p>
+        </div>
+      </div>
+
+      <!-- Filter + Document Grid -->
+      <div class="portal-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-folder-open" style="color:var(--gold);margin-right:0.5rem;"></i> All Documents</h3>
+          <button class="btn btn-gold" style="padding:0.5rem 1rem;font-size:0.8rem;" onclick="document.getElementById('file-input').click()">
+            <i class="fa-solid fa-upload"></i> Upload File
+          </button>
+          <input type="file" id="file-input" multiple style="display:none;" />
+        </div>
+
+        <div class="doc-filter-bar">
+          <button class="doc-filter-btn active">All</button>
+          <button class="doc-filter-btn">PDF</button>
+          <button class="doc-filter-btn">Word</button>
+          <button class="doc-filter-btn">Images</button>
+          <button class="doc-filter-btn">Invoices</button>
+        </div>
+
+        <div class="doc-grid">
+          <div class="doc-card">
+            <i class="fa-solid fa-file-pdf doc-card-icon pdf"></i>
+            <div class="doc-card-name">Interrogatories_June2026.pdf</div>
+            <div class="doc-card-meta">Added Today &bull; 2.4 MB &bull; PDF</div>
+            <div class="doc-card-actions">
+              <button><i class="fa-solid fa-eye"></i> View</button>
+              <button><i class="fa-solid fa-download"></i> Save</button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <i class="fa-solid fa-file-word doc-card-icon doc"></i>
+            <div class="doc-card-name">Draft_Settlement_v3.docx</div>
+            <div class="doc-card-meta">Jun 1 &bull; 1.1 MB &bull; Word</div>
+            <div class="doc-card-actions">
+              <button><i class="fa-solid fa-eye"></i> View</button>
+              <button><i class="fa-solid fa-download"></i> Save</button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <i class="fa-solid fa-file-pdf doc-card-icon pdf"></i>
+            <div class="doc-card-name">InitialDisclosures_Signed.pdf</div>
+            <div class="doc-card-meta">May 20 &bull; 890 KB &bull; PDF</div>
+            <div class="doc-card-actions">
+              <button><i class="fa-solid fa-eye"></i> View</button>
+              <button><i class="fa-solid fa-download"></i> Save</button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <i class="fa-solid fa-file-invoice doc-card-icon sheet"></i>
+            <div class="doc-card-name">Invoice_INV-3021.pdf</div>
+            <div class="doc-card-meta">May 10 &bull; 340 KB &bull; PDF</div>
+            <div class="doc-card-actions">
+              <button><i class="fa-solid fa-eye"></i> View</button>
+              <button><i class="fa-solid fa-download"></i> Save</button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <i class="fa-solid fa-file-pdf doc-card-icon pdf"></i>
+            <div class="doc-card-name">Retainer_Agreement_2026.pdf</div>
+            <div class="doc-card-meta">May 5 &bull; 512 KB &bull; PDF</div>
+            <div class="doc-card-actions">
+              <button><i class="fa-solid fa-eye"></i> View</button>
+              <button><i class="fa-solid fa-download"></i> Save</button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <i class="fa-solid fa-file-word doc-card-icon doc"></i>
+            <div class="doc-card-name">Complaint_Filed_FC2026.docx</div>
+            <div class="doc-card-meta">May 10 &bull; 780 KB &bull; Word</div>
+            <div class="doc-card-actions">
+              <button><i class="fa-solid fa-eye"></i> View</button>
+              <button><i class="fa-solid fa-download"></i> Save</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Zone -->
+        <div class="upload-zone" id="upload-zone">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <p><strong style="color:var(--ivory);">Click to upload</strong> or drag &amp; drop your files here</p>
+          <p style="margin-top:0.4rem;font-size:0.75rem;">Supports PDF, DOC, DOCX, JPG, PNG &mdash; max 50 MB per file</p>
+          <p style="margin-top:0.75rem;font-size:0.7rem;color:rgba(200,169,107,0.6);">
+            <i class="fa-solid fa-lock"></i> All uploads are encrypted with AES-256
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll('.doc-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.doc-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+    const zone = document.getElementById('upload-zone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); });
+    zone.addEventListener('click', () => document.getElementById('file-input').click());
+  </script>
+
+  <script>
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if(mobileBtn){
+      mobileBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.toggle('mobile-active');
+      });
+    }
+    const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+    if(mobileCloseBtn){
+      mobileCloseBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.remove('mobile-active');
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,910 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <meta name="description"
+    content="Read expert legal insights on Family Law, Estate Planning, Child Custody and more â€” from Attorney Y Sai Yashwanth Reddy." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* Featured article */
+    .featured-article {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 3.5rem;
+    }
+
+    .featured-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) saturate(0.6) contrast(1.1);
+      transition: transform 0.8s ease;
+    }
+
+    .featured-article:hover .featured-img img {
+      transform: scale(1.04);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    .featured-body {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--glass-border);
+    }
+
+    .featured-body .blog-tag {
+      margin-bottom: 1rem;
+    }
+
+    .featured-body h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      color: var(--ivory);
+    }
+
+    .featured-body h2:hover {
+      color: var(--gold);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .featured-body p {
+      font-size: 0.9rem;
+      color: var(--gray-text);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .featured-author {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .featured-author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-dark);
+      overflow: hidden;
+    }
+
+    .featured-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .featured-author-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ivory);
+    }
+
+    .featured-author-sub {
+      font-size: 0.75rem;
+      color: var(--gray-text);
+    }
+
+    /* Blog grid layout */
+    .blog-main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* Articles list */
+    .articles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .article-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      transition: var(--transition);
+    }
+
+    .article-card:hover {
+      border-color: rgba(200, 169, 107, 0.25);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .article-card-img {
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .article-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) saturate(0.6);
+      transition: transform 0.5s ease;
+    }
+
+    .article-card:hover .article-card-img img {
+      transform: scale(1.06);
+    }
+
+    .article-card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .article-card-body .blog-tag {
+      margin-bottom: 0.6rem;
+      align-self: flex-start;
+    }
+
+    .article-card-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+      color: var(--ivory);
+      transition: var(--transition);
+    }
+
+    .article-card:hover .article-card-body h3 {
+      color: var(--gold);
+    }
+
+    .article-card-body p {
+      font-size: 0.82rem;
+      color: var(--gray-text);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .blog-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .sidebar-widget {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+
+    .sidebar-widget h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ivory);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--glass-border);
+      font-family: var(--font-body);
+    }
+
+    /* Categories */
+    .category-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--glass-border);
+      font-size: 0.875rem;
+      color: var(--ivory-dim);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .category-item:last-child {
+      border-bottom: none;
+    }
+
+    .category-item:hover {
+      color: var(--gold);
+      padding-left: 6px;
+    }
+
+    .category-count {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(200, 169, 107, 0.1);
+      color: var(--gold);
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+    }
+
+    /* Recent posts */
+    .recent-post {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .recent-post:last-child {
+      border-bottom: none;
+    }
+
+    .recent-post:hover {
+      transform: translateX(4px);
+    }
+
+    .recent-post-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .recent-post-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) saturate(0.5);
+    }
+
+    .recent-post-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.4;
+      margin-bottom: 0.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .recent-post:hover .recent-post-title {
+      color: var(--gold);
+    }
+
+    .recent-post-date {
+      font-size: 0.7rem;
+      color: var(--gray-text);
+    }
+
+    /* Tags */
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag-pill {
+      padding: 0.3rem 0.9rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--ivory-dim);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tag-pill:hover {
+      background: rgba(200, 169, 107, 0.1);
+      border-color: rgba(200, 169, 107, 0.3);
+      color: var(--gold);
+    }
+
+    /* Newsletter widget */
+    .newsletter-widget {
+      background: linear-gradient(135deg, rgba(200, 169, 107, 0.1), rgba(200, 169, 107, 0.03));
+      border: 1px solid rgba(200, 169, 107, 0.2);
+    }
+
+    .newsletter-input {
+      width: 100%;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--ivory);
+      outline: none;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--gold-dark);
+    }
+
+    .newsletter-input::placeholder {
+      color: var(--gray-text);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .page-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--ivory-dim);
+    }
+
+    .page-btn:hover,
+    .page-btn.active {
+      background: rgba(200, 169, 107, 0.12);
+      border-color: rgba(200, 169, 107, 0.3);
+      color: var(--gold);
+    }
+
+    /* Filter tabs */
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .filter-tab {
+      padding: 0.45rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--ivory-dim);
+    }
+
+    .filter-tab:hover,
+    .filter-tab.active {
+      background: rgba(200, 169, 107, 0.12);
+      border-color: rgba(200, 169, 107, 0.35);
+      color: var(--gold);
+    }
+
+    @media (max-width: 900px) {
+      .featured-article {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-img {
+        min-height: 220px;
+      }
+
+      .blog-main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .article-card {
+        grid-template-columns: 1fr;
+      }
+
+      .article-card-img {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor-glow"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="nav-logo-text">
+          <h2 style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.05em; font-weight: 700; color: var(--ivory); margin: 0; line-height: 1.2;">ATTORNEY</h2><span style="font-family: var(--font-body); font-size: 0.65rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL CONSULTANT</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link">Home <i class="fa-solid fa-chevron-down" style="font-size:0.7em; margin-left:0.3em;"></i></a>
+          <div class="dropdown-menu">
+            <a href="index.html" class="dropdown-item">Home 1</a>
+            <a href="index2.html" class="dropdown-item">Home 2</a>
+          </div>
+        </div>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="practice-areas.html" class="nav-link">Practice Areas</a>
+        <a href="blog.html" class="nav-link active">Insights</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link">Dashboard <i class="fa-solid fa-chevron-down" style="font-size:0.7em; margin-left:0.3em;"></i></a>
+          <div class="dropdown-menu">
+            <a href="admin-portal.html" class="dropdown-item">Admin Portal</a>
+            <a href="client-portal.html" class="dropdown-item">Client Portal</a>
+          </div>
+        </div>
+      </div>
+      <!-- Actions -->
+      <div class="nav-actions">
+                <button class="btn btn-ghost theme-toggle-btn" style="padding:0.5rem 0.8rem;font-weight:600;"><i class="fa-solid fa-sun"></i> Light</button>
+        <button class="btn btn-ghost rtl-toggle-btn" style="padding: 0.5rem 0.8rem; font-weight: 600;">RTL</button>
+        <a href="login.html" class="btn btn-gold" style="padding:0.6rem 1.4rem;">
+          <i class="fa-solid fa-lock"></i> Login
+        </a>
+      </div>
+      <button class="mobile-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html" class="mobile-menu-logo" style="position:absolute; top:1rem; left:0; right:0; justify-content:center; display:flex; align-items:center; gap:0.5rem; text-decoration:none; z-index:1000; padding-right: 2rem;">
+        <div class="nav-logo-icon" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--gold);color:var(--navy);border-radius:4px;"><i class="fa-solid fa-scale-balanced" style="font-size:0.85rem;"></i></div>
+        <div class="nav-logo-text" style="display:flex; flex-direction:column;">
+          <h2 style="font-family:var(--font-heading); font-size:1.1rem; letter-spacing:0.05em; font-weight:700; color:var(--ivory); margin:0; line-height:1;">ATTORNEY</h2>
+          <span style="font-family:var(--font-body); font-size:0.45rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin:0; margin-top:3px;">LEGAL CONSULTANT</span>
+        </div>
+      </a>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-btn">Home <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="mobile-dropdown-content">
+          <a href="index.html" class="sub-link">Home 1</a>
+          <a href="index2.html" class="sub-link">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="practice-areas.html">Practice Areas</a>
+      <a href="blog.html">Insights</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-btn">Dashboard <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="mobile-dropdown-content">
+          <a href="admin-portal.html" class="sub-link">Admin Portal</a>
+          <a href="client-portal.html" class="sub-link">Client Portal</a>
+        </div>
+      </div>
+      <div style="flex:1;"></div>
+      <div class="mobile-actions" style="display:flex; gap:0.5rem; margin-bottom:0.5rem;">
+        <button class="btn btn-ghost theme-toggle-btn" style="flex:1; justify-content:center; min-height:44px;"><i class="fa-solid fa-sun"></i> Light</button>
+        <button class="btn btn-ghost rtl-toggle-btn" style="flex:1; justify-content:center; min-height:44px;">RTL</button>
+      </div>
+      <a href="login.html" class="btn btn-gold" style="padding:0.6rem 1.4rem; width:100%; justify-content:center; margin-top:0.5rem; color:white;"><i class="fa-solid fa-lock"></i> Login</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+    <div class="container">
+      <span class="section-label">Knowledge Hub</span>
+      <h1 class="section-title">From the Desk of<br />Attorney</h1>
+      <div class="section-divider"></div>
+      <p style="color:var(--gray-text);max-width:560px;margin:0 auto;line-height:1.8;font-size:0.95rem;">
+        Practical, plain-language legal insights to help you navigate family law and estate matters with confidence.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section style="padding:5rem 0;background:var(--navy);">
+    <div class="container">
+
+      <!-- Featured Article -->
+      <div class="featured-article fade-in">
+        <div class="featured-img">
+          <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1200&auto=format&fit=crop"
+            alt="Estate Planning" />
+          <span class="featured-badge">Editor's Pick</span>
+        </div>
+        <div class="featured-body">
+          <span class="blog-tag">Estate Planning</span>
+          <h2>Why Every Indian Family Needs an Estate Plan â€” Regardless of Wealth</h2>
+          <p>Estate planning isn't a luxury reserved for the wealthy. It's the single most important legal step every
+            family can take. Discover why â€” and what happens if you don't have one in place.</p>
+          <div class="blog-meta" style="margin-bottom:1.5rem;">
+            <span><i class="fa-regular fa-calendar"></i> May 28, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+            <span><i class="fa-regular fa-eye"></i> 1.2k views</span>
+          </div>
+          <a href="#" class="btn btn-gold" style="align-self:center;font-size:0.85rem;padding:0.65rem 1.5rem;">Read
+            Article <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="featured-author" style="margin-top:1.5rem;">
+            <div class="featured-author-avatar">
+              <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=100&auto=format&fit=crop"
+                alt="Attorney" />
+            </div>
+            <div>
+              <div class="featured-author-name">Y Sai Yashwanth Reddy, Esq.</div>
+              <div class="featured-author-sub">Attorney at Law Â· Estate Planning</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- Search Widget moved above filters -->
+        <div class="sidebar-widget" style="margin-bottom: 2rem;">
+          <h3><i class="fa-solid fa-magnifying-glass" style="color:var(--gold);margin-right:0.5rem;"></i>Search Articles</h3>
+          <div style="position:relative;">
+            <input type="text" id="blogSearchInput" placeholder="Search legal topics..." class="newsletter-input" style="padding-right:2.5rem;" />
+            <i class="fa-solid fa-magnifying-glass" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);color:var(--gold);font-size:0.85rem;pointer-events:none;"></i>
+          </div>
+        </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs fade-in">
+        <button class="filter-tab active">All Articles</button>
+        <button class="filter-tab">Family Law</button>
+        <button class="filter-tab">Estate Planning</button>
+        <button class="filter-tab">Child Custody</button>
+        <button class="filter-tab">Divorce</button>
+        <button class="filter-tab">Probate</button>
+        <button class="filter-tab">Mediation</button>
+      </div>
+
+      <!-- Grid: Articles + Sidebar -->
+      <div class="blog-main-grid">
+
+        <!-- Articles -->
+        <div>
+          <div class="articles-list">
+
+            <div class="article-card fade-in delay-1">
+              <div class="article-card-img">
+                <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=400&auto=format&fit=crop"
+                  alt="Child Custody" />
+              </div>
+              <div class="article-card-body">
+                <span class="blog-tag">Family Law</span>
+                <h3>Navigating Child Custody: What Indian Courts Actually Consider</h3>
+                <p>Understanding how courts determine "the best interest of the child" and how to effectively build your
+                  custody case.</p>
+                <div class="blog-meta">
+                  <span><i class="fa-regular fa-calendar"></i> May 15, 2026</span>
+                  <span><i class="fa-regular fa-clock"></i> 7 min</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card fade-in delay-2">
+              <div class="article-card-img">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=400&auto=format&fit=crop"
+                  alt="Trusts vs Wills" />
+              </div>
+              <div class="article-card-body">
+                <span class="blog-tag">Trusts</span>
+                <h3>Living Trusts vs. Wills: A Complete Comparison for Indian Families</h3>
+                <p>Both are essential estate planning tools â€” but they serve different purposes. Here's a clear
+                  breakdown to help you decide.</p>
+                <div class="blog-meta">
+                  <span><i class="fa-regular fa-calendar"></i> Apr 30, 2026</span>
+                  <span><i class="fa-regular fa-clock"></i> 6 min</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card fade-in delay-3">
+              <div class="article-card-img">
+                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&auto=format&fit=crop"
+                  alt="Divorce Process" />
+              </div>
+              <div class="article-card-body">
+                <span class="blog-tag">Divorce</span>
+                <h3>The Divorce Process in India: A Step-by-Step Legal Guide</h3>
+                <p>From petition to decree â€” a clear walkthrough of what to expect during a mutual consent or contested
+                  divorce.</p>
+                <div class="blog-meta">
+                  <span><i class="fa-regular fa-calendar"></i> Apr 10, 2026</span>
+                  <span><i class="fa-regular fa-clock"></i> 9 min</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card fade-in delay-1">
+              <div class="article-card-img">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=400&auto=format&fit=crop"
+                  alt="Power of Attorney" />
+              </div>
+              <div class="article-card-body">
+                <span class="blog-tag">Estate Planning</span>
+                <h3>Power of Attorney: Everything You Need to Know Before Signing</h3>
+                <p>A Power of Attorney is one of the most powerful documents you can create â€” and one of the most
+                  misunderstood. Don't sign without reading this.</p>
+                <div class="blog-meta">
+                  <span><i class="fa-regular fa-calendar"></i> Mar 22, 2026</span>
+                  <span><i class="fa-regular fa-clock"></i> 5 min</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card fade-in delay-2">
+              <div class="article-card-img">
+                <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=400&auto=format&fit=crop"
+                  alt="Mediation" />
+              </div>
+              <div class="article-card-body">
+                <span class="blog-tag">Mediation</span>
+                <h3>Why Mediation is Often the Better Choice in Family Disputes</h3>
+                <p>Mediation is faster, cheaper, and far less emotionally damaging than courtroom litigation â€”
+                  especially when children are involved.</p>
+                <div class="blog-meta">
+                  <span><i class="fa-regular fa-calendar"></i> Mar 5, 2026</span>
+                  <span><i class="fa-regular fa-clock"></i> 6 min</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card fade-in delay-3">
+              <div class="article-card-img">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=400&auto=format&fit=crop"
+                  alt="Intestate" />
+              </div>
+              <div class="article-card-body">
+                <span class="blog-tag">Probate</span>
+                <h3>What Happens If You Die Without a Will in India?</h3>
+                <p>Dying intestate can cause family conflict, costly court proceedings, and assets going to the wrong
+                  people. Here's what the law says.</p>
+                <div class="blog-meta">
+                  <span><i class="fa-regular fa-calendar"></i> Feb 18, 2026</span>
+                  <span><i class="fa-regular fa-clock"></i> 7 min</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="blog-sidebar">
+
+          <!-- Categories -->
+          <div class="sidebar-widget">
+            <h3><i class="fa-solid fa-folder-open" style="color:var(--gold);margin-right:0.5rem;"></i>Categories</h3>
+            <div class="category-item"><span>Family Law</span><span class="category-count">12</span></div>
+            <div class="category-item"><span>Estate Planning</span><span class="category-count">8</span></div>
+            <div class="category-item"><span>Child Custody</span><span class="category-count">7</span></div>
+            <div class="category-item"><span>Divorce</span><span class="category-count">6</span></div>
+            <div class="category-item"><span>Probate</span><span class="category-count">5</span></div>
+            <div class="category-item"><span>Mediation</span><span class="category-count">4</span></div>
+            <div class="category-item"><span>Trusts &amp; Wills</span><span class="category-count">4</span></div>
+          </div>
+
+          <!-- Recent Posts -->
+          <div class="sidebar-widget">
+            <h3><i class="fa-solid fa-newspaper" style="color:var(--gold);margin-right:0.5rem;"></i>Recent Posts</h3>
+            <div class="recent-post">
+              <div class="recent-post-img">
+                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=100&auto=format&fit=crop"
+                  alt="" />
+              </div>
+              <div>
+                <div class="recent-post-title">Why Every Indian Family Needs an Estate Plan</div>
+                <div class="recent-post-date"><i class="fa-regular fa-calendar"></i> May 28, 2026</div>
+              </div>
+            </div>
+            <div class="recent-post">
+              <div class="recent-post-img">
+                <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=100&auto=format&fit=crop"
+                  alt="" />
+              </div>
+              <div>
+                <div class="recent-post-title">Child Custody: What Courts Actually Consider</div>
+                <div class="recent-post-date"><i class="fa-regular fa-calendar"></i> May 15, 2026</div>
+              </div>
+            </div>
+            <div class="recent-post">
+              <div class="recent-post-img">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=100&auto=format&fit=crop"
+                  alt="" />
+              </div>
+              <div>
+                <div class="recent-post-title">Living Trusts vs. Wills: The Complete Guide</div>
+                <div class="recent-post-date"><i class="fa-regular fa-calendar"></i> Apr 30, 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="sidebar-widget newsletter-widget">
+            <h3><i class="fa-solid fa-envelope-open-text" style="color:var(--gold);margin-right:0.5rem;"></i>Legal
+              Updates</h3>
+            <p style="font-size:0.82rem;color:var(--gray-text);line-height:1.7;margin-bottom:1.25rem;">Subscribe for
+              monthly legal insights and case law updates delivered to your inbox.</p>
+            <input type="email" placeholder="Your email address" class="newsletter-input" />
+            <button class="btn btn-gold" style="width:100%;justify-content:center;font-size:0.85rem;padding:0.7rem;">
+              <i class="fa-solid fa-paper-plane"></i> Subscribe
+            </button>
+            <p style="font-size:0.7rem;color:var(--gray-text);margin-top:0.75rem;text-align:center;">No spam.
+              Unsubscribe anytime.</p>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box fade-in">
+        <span class="section-label">Get Clarity</span>
+        <h2>Have Legal Questions?<br /><span class="gold-text">Let's Talk.</span></h2>
+        <p>Reading articles is a great first step â€” but every situation is unique. Get personalised guidance from an
+          experienced attorney.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-gold"><i class="fa-solid fa-calendar-check"></i> Schedule Free
+            Consultation</a>
+          <a href="practice-areas.html" class="btn btn-outline">View Practice Areas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+            <div class="nav-logo-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div>
+              <div class="nav-logo-text"><h2 style="font-family:var(--font-heading);font-weight:700;font-size:1.2rem;line-height:1;margin:0;">ATTORNEY</h2></div><div style="font-size:0.55rem;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;">LEGAL CONSULTANT</div>
+            </div>
+          </div>
+          <p>Compassionate, strategic legal representation in Family Law and Estate Planning.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About the Attorney</a></li>
+            <li><a href="practice-areas.html">Practice Areas</a></li>
+            <li><a href="blog.html">Legal Insights</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="client-portal.html">Client Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Practice Areas</h4>
+          <ul>
+            <li><a href="practice-areas.html">Family Law</a></li>
+            <li><a href="practice-areas.html">Estate Planning</a></li>
+            <li><a href="practice-areas.html">Child Custody</a></li>
+            <li><a href="practice-areas.html">Probate</a></li>
+            <li><a href="practice-areas.html">Mediation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Suite 204, Legal
+              Tower,<br />Hyderabad, Telangana 500001</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+919876543210"
+              style="color:var(--gray-text);">+91 987 654 3210</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:yashwanth@reddy-law.in"
+              style="color:var(--gray-text);">yashwanth@reddy-law.in</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Â© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Filter tabs interaction
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+    // Pagination
+    document.querySelectorAll('.page-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+        if (!btn.querySelector('i')) btn.classList.add('active');
+      });
+    });
+    // Newsletter
+    const subBtn = document.querySelector('.newsletter-widget .btn-gold');
+    if (subBtn) {
+      subBtn.addEventListener('click', () => {
+        const orig = subBtn.innerHTML;
+        subBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Subscribed!';
+        setTimeout(() => { subBtn.innerHTML = orig; }, 3000);
+      });
+    }
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

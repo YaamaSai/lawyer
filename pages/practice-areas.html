@@ -1,0 +1,877 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>"> <meta name="description" content="Explore the full range of legal services offered by Attorney Y Sai Yashwanth Reddy Family Law, Estate Planning, Child Custody, Wills, Trusts & more." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .pa-hero-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 1010px) {
+      .pa-hero-grid, .deep-dive {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+    }
+
+    .pa-card {
+      text-align: center;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .pa-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .pa-card:hover::after {
+      opacity: 1;
+    }
+
+    .pa-card-num {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: rgba(200, 169, 107, 0.08);
+      line-height: 1;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .pa-card:hover .pa-card-num {
+      color: rgba(200, 169, 107, 0.18);
+    }
+
+    [data-theme="light"] .pa-card-num,
+    [data-theme="light-2"] .pa-card-num {
+      color: rgba(200, 169, 107, 0.25);
+    }
+
+    [data-theme="light"] .pa-card:hover .pa-card-num,
+    [data-theme="light-2"] .pa-card:hover .pa-card-num {
+      color: rgba(200, 169, 107, 0.45);
+    }
+
+    .pa-card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: rgba(200, 169, 107, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      margin-left: auto;
+      margin-right: auto;
+      transition: var(--transition);
+    }
+
+    .pa-card:hover .pa-card-icon {
+      background: var(--gold);
+      color: var(--navy);
+      transform: rotate(-8deg) scale(1.1);
+    }
+
+    .pa-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .pa-card p {
+      font-size: 0.875rem;
+      color: var(--gray-text);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .pa-sub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: fit-content;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .pa-sub-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--ivory-dim);
+    }
+
+    .pa-sub-item i {
+      color: var(--gold);
+      font-size: 0.65rem;
+    }
+
+    /* Deep Dive Section */
+    .deep-dive {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: stretch;
+    }
+
+    .deep-dive-img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .deep-dive-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) saturate(0.6) contrast(1.1);
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(200, 169, 107, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-item.open {
+      background: rgba(200, 169, 107, 0.05);
+      border-color: var(--gold);
+      border-left: 4px solid var(--gold);
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .faq-q h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ivory);
+      font-family: var(--font-body);
+      margin: 0;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover .faq-q h4 {
+      color: var(--gold);
+    }
+
+    .faq-q i {
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(200, 169, 107, 0.1);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faq-item:hover .faq-q i {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .faq-item.open .faq-q i {
+      transform: rotate(135deg);
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .faq-a {
+      font-size: 0.875rem;
+      color: var(--gray-text);
+      line-height: 1.8;
+      padding: 0 1.5rem 1.25rem;
+      display: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+      animation: fadeDown 0.3s ease forwards;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Light Mode Overrides for FAQ */
+    [data-theme="light"] .faq-item {
+      background: rgba(255, 253, 248, 0.95);
+      border-color: rgba(154, 114, 48, 0.15);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+
+    [data-theme="light"] .faq-item:hover {
+      background: #FFFFFF;
+      border-color: rgba(154, 114, 48, 0.3);
+      box-shadow: 0 8px 24px rgba(154, 114, 48, 0.08);
+    }
+
+    [data-theme="light"] .faq-item.open {
+      background: #FFFFFF;
+      border-color: var(--gold);
+    }
+
+    [data-theme="light"] .faq-q h4 {
+      color: #1C1814;
+    }
+
+    [data-theme="light"] .faq-item:hover .faq-q h4 {
+      color: var(--gold);
+    }
+
+    [data-theme="light"] .faq-a {
+      border-top-color: rgba(154, 114, 48, 0.1);
+      color: #5A5040;
+    }
+
+    [data-theme="light-2"] .faq-item {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(79, 70, 229, 0.15);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+
+    [data-theme="light-2"] .faq-item:hover {
+      background: #FFFFFF;
+      border-color: rgba(79, 70, 229, 0.3);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.08);
+    }
+
+    [data-theme="light-2"] .faq-item.open {
+      background: #FFFFFF;
+      border-color: #4F46E5;
+      border-left-color: #4F46E5;
+    }
+
+    [data-theme="light-2"] .faq-q h4 {
+      color: #0F0E1A;
+    }
+
+    [data-theme="light-2"] .faq-item:hover .faq-q h4 {
+      color: #4F46E5;
+    }
+
+    [data-theme="light-2"] .faq-item .faq-q i {
+      color: #4F46E5;
+      background: rgba(79, 70, 229, 0.1);
+    }
+
+    [data-theme="light-2"] .faq-item:hover .faq-q i,
+    [data-theme="light-2"] .faq-item.open .faq-q i {
+      background: #4F46E5;
+      color: #fff;
+    }
+
+    [data-theme="light-2"] .faq-a {
+      border-top-color: rgba(79, 70, 229, 0.1);
+      color: #4B5280;
+    }
+
+    .process-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '';
+      position: absolute;
+      left: 2.85rem;
+      bottom: -1px;
+      width: 2px;
+      height: 2rem;
+      background: var(--glass-border);
+    }
+
+    .step-num {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(200, 169, 107, 0.1);
+      border: 2px solid rgba(200, 169, 107, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .step-content h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      font-family: var(--font-body);
+      color: var(--ivory);
+    }
+
+    .step-content p {
+      font-size: 0.85rem;
+      color: var(--gray-text);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor-glow"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="nav-logo-text">
+          <h2
+            style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.05em; font-weight: 700; color: var(--ivory); margin: 0; line-height: 1.2;">
+            ATTORNEY</h2><span
+            style="font-family: var(--font-body); font-size: 0.65rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL
+            CONSULTANT</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link">Home <i class="fa-solid fa-chevron-down" style="font-size:0.7em; margin-left:0.3em;"></i></a>
+          <div class="dropdown-menu">
+            <a href="index.html" class="dropdown-item">Home 1</a>
+            <a href="index2.html" class="dropdown-item">Home 2</a>
+          </div>
+        </div>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="practice-areas.html" class="nav-link active">Practice Areas</a>
+        <a href="blog.html" class="nav-link">Insights</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link">Dashboard <i class="fa-solid fa-chevron-down" style="font-size:0.7em; margin-left:0.3em;"></i></a>
+          <div class="dropdown-menu">
+            <a href="admin-portal.html" class="dropdown-item">Admin Portal</a>
+            <a href="client-portal.html" class="dropdown-item">Client Portal</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost theme-toggle-btn" style="padding:0.5rem 0.8rem;font-weight:600;"><i
+            class="fa-solid fa-sun"></i> Light</button>
+        <button class="btn btn-ghost rtl-toggle-btn" style="padding: 0.5rem 0.8rem; font-weight: 600;">RTL</button>
+        <a href="login.html" class="btn btn-gold" style="padding:0.6rem 1.4rem;">
+          <i class="fa-solid fa-lock"></i> Login
+        </a>
+      </div>
+      <button class="mobile-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html" class="mobile-menu-logo"
+        style="position:absolute; top:1rem; left:0; right:0; justify-content:center; display:flex; align-items:center; gap:0.5rem; text-decoration:none; z-index:1000; padding-right: 2rem;">
+        <div class="nav-logo-icon"
+          style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--gold);color:var(--navy);border-radius:4px;">
+          <i class="fa-solid fa-scale-balanced" style="font-size:0.85rem;"></i></div>
+        <div class="nav-logo-text" style="display:flex; flex-direction:column;">
+          <h2
+            style="font-family:var(--font-heading); font-size:1.1rem; letter-spacing:0.05em; font-weight:700; color:var(--ivory); margin:0; line-height:1;">
+            ATTORNEY</h2>
+          <span
+            style="font-family:var(--font-body); font-size:0.45rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin:0; margin-top:3px;">LEGAL
+            CONSULTANT</span>
+        </div>
+      </a>
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-btn">Home <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="mobile-dropdown-content">
+          <a href="index.html" class="sub-link">Home 1</a>
+          <a href="index2.html" class="sub-link">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="practice-areas.html">Practice Areas</a>
+      <a href="blog.html">Insights</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-btn">Dashboard <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="mobile-dropdown-content">
+          <a href="admin-portal.html" class="sub-link">Admin Portal</a>
+          <a href="client-portal.html" class="sub-link">Client Portal</a>
+        </div>
+      </div>
+      <div style="flex:1;"></div>
+      <div class="mobile-actions" style="display:flex; gap:0.5rem; margin-bottom:0.5rem;">
+        <button class="btn btn-ghost theme-toggle-btn" style="flex:1; justify-content:center; min-height:44px;"><i
+            class="fa-solid fa-sun"></i> Light</button>
+        <button class="btn btn-ghost rtl-toggle-btn"
+          style="flex:1; justify-content:center; min-height:44px;">RTL</button>
+      </div>
+      <a href="login.html" class="btn btn-gold"
+        style="padding:0.6rem 1.4rem; width:100%; justify-content:center; margin-top:0.5rem; color:white;"><i
+          class="fa-solid fa-lock"></i> Login</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="container">
+        <span class="section-label">Legal Services</span>
+        <h1 class="section-title">Focused. Effective. Dedicated.</h1>
+        <div class="section-divider"></div>
+        <p style="color:var(--gray-text);max-width:580px;margin:0 auto;line-height:1.8;font-size:0.95rem;">
+          Every service we offer is rooted in deep expertise and a commitment to achieving the best possible outcome for
+          your family's future.
+        </p>
+      </div>
+  </section>
+
+  <!-- ALL PRACTICE AREAS GRID -->
+  <section style="padding:3rem 0;background:var(--navy);">
+    <div class="container">
+      <div class="pa-hero-grid">
+
+        <!-- Family Law -->
+        <div class="glass-card pa-card tilt-card fade-in delay-1">
+          <div class="pa-card-num">01</div>
+          <div class="pa-card-icon"><i class="fa-solid fa-users-between-lines"></i></div>
+          <h3>Family Law</h3>
+          <p>Skilled representation for all family-related legal matters, handled with the sensitivity and determination
+            your situation demands.</p>
+          <div class="pa-sub-list">
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Divorce &amp; Legal Separation</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Child Custody &amp; Visitation</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Child Support Orders</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Spousal &amp; Alimony</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Domestic Violence Protection</div>
+          </div>
+        </div>
+
+        <!-- Estate Planning -->
+        <div class="glass-card pa-card tilt-card fade-in delay-2">
+          <div class="pa-card-num">02</div>
+          <div class="pa-card-icon"><i class="fa-solid fa-file-contract"></i></div>
+          <h3>Estate Planning</h3>
+          <p>Thoughtful, comprehensive plans that protect your wealth and ensure your wishes are honoured â€” for
+            generations to come.</p>
+          <div class="pa-sub-list">
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Will Drafting &amp; Review</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Revocable &amp; Irrevocable Trusts</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Power of Attorney</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Advance Healthcare Directives</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Beneficiary Designations</div>
+          </div>
+        </div>
+
+        <!-- Child Custody -->
+        <div class="glass-card pa-card tilt-card fade-in delay-3">
+          <div class="pa-card-num">03</div>
+          <div class="pa-card-icon"><i class="fa-solid fa-child-reaching"></i></div>
+          <h3>Child Custody</h3>
+          <p>Protecting the best interests of your children while advocating for your parental rights with clarity and
+            conviction.</p>
+          <div class="pa-sub-list">
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Physical &amp; Legal Custody</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Parenting Plan Agreements</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Custody Modifications</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> International Custody</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Grandparent Rights</div>
+          </div>
+        </div>
+
+        <!-- Probate -->
+        <div class="glass-card pa-card tilt-card fade-in delay-1">
+          <div class="pa-card-num">04</div>
+          <div class="pa-card-icon"><i class="fa-solid fa-building-columns"></i></div>
+          <h3>Probate Administration</h3>
+          <p>Guiding families through the probate process with compassion and efficiency, so you can focus on healing,
+            not paperwork.</p>
+          <div class="pa-sub-list">
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Estate Administration</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Probate Court Filings</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Asset Distribution</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Creditor Claims</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Estate Dispute Resolution</div>
+          </div>
+        </div>
+
+        <!-- Prenuptial Agreements -->
+        <div class="glass-card pa-card tilt-card fade-in delay-2">
+          <div class="pa-card-num">05</div>
+          <div class="pa-card-icon"><i class="fa-solid fa-ring"></i></div>
+          <h3>Prenuptial Agreements</h3>
+          <p>Protecting your financial interests before marriage â€” with clarity, transparency, and respect for both
+            parties.</p>
+          <div class="pa-sub-list">
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Prenuptial Agreement Drafting</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Postnuptial Agreements</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Cohabitation Agreements</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Asset Protection Planning</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Business Interest Protection</div>
+          </div>
+        </div>
+
+        <!-- Mediation -->
+        <div class="glass-card pa-card tilt-card fade-in delay-3">
+          <div class="pa-card-num">06</div>
+          <div class="pa-card-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Mediation &amp; Arbitration</h3>
+          <p>Resolving disputes outside court â€” faster, more affordable, and with less emotional strain on your family.
+          </p>
+          <div class="pa-sub-list">
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Family Mediation</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Estate Dispute Mediation</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Collaborative Law</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Binding Arbitration</div>
+            <div class="pa-sub-item"><i class="fa-solid fa-circle"></i> Settlement Negotiations</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY LAW DEEP DIVE -->
+  <section style="padding:3rem 0;background:var(--navy-mid);">
+    <div class="container">
+      <div class="deep-dive">
+        <div class="fade-in-left" style="display:flex;flex-direction:column;">
+          <div class="deep-dive-img" style="flex:1;">
+            <img src="https://t4.ftcdn.net/jpg/08/02/39/73/240_F_802397346_5GtwKRXZPL35HFfQKD3x5TwDa7YMdDzo.jpg"
+              alt="Family Law" />
+          </div>
+        </div>
+        <div class="fade-in-right">
+          <span class="section-label">In Focus</span>
+          <h2 class="section-title">Family Law Expertise</h2>
+          <div class="section-divider left"></div>
+          <p style="color:var(--gray-text);line-height:1.9;font-size:0.95rem;margin-bottom:2rem;">
+            Divorce and family disputes are among the most emotionally challenging events anyone can face. Attorney
+            Reddy provides a stable, knowledgeable presence â€” ensuring you make informed decisions during turbulent
+            times.
+          </p>
+
+          <!-- Our Approach Grid (Replaced FAQs) -->
+          <div class="values-grid"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1rem;">
+
+            <div class="value-card"
+              style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 1.5rem; transition: var(--transition); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; overflow: hidden; group;">
+              <div class="value-icon"
+                style="width: 40px; height: 40px; border-radius: 10px; background: rgba(200,169,107,0.15); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1rem; transition: var(--transition);">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h4
+                style="font-size: 1rem; font-weight: 700; color: var(--ivory); margin-bottom: 0.5rem; transition: var(--transition);">
+                Compassionate Care</h4>
+              <p style="font-size: 0.85rem; color: var(--gray-text); line-height: 1.6; margin: 0;">We prioritize your
+                emotional well-being while navigating complex family dynamics.</p>
+              <div
+                style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--gold); filter: blur(40px); opacity: 0; transition: var(--transition);"
+                class="card-glow"></div>
+            </div>
+
+            <div class="value-card"
+              style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 1.5rem; transition: var(--transition); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; overflow: hidden; group;">
+              <div class="value-icon"
+                style="width: 40px; height: 40px; border-radius: 10px; background: rgba(200,169,107,0.15); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1rem; transition: var(--transition);">
+                <i class="fa-solid fa-chess-knight"></i>
+              </div>
+              <h4
+                style="font-size: 1rem; font-weight: 700; color: var(--ivory); margin-bottom: 0.5rem; transition: var(--transition);">
+                Strategic Counsel</h4>
+              <p style="font-size: 0.85rem; color: var(--gray-text); line-height: 1.6; margin: 0;">Calculated, precise
+                legal strategies designed to protect your assets and rights.</p>
+              <div
+                style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--gold); filter: blur(40px); opacity: 0; transition: var(--transition);"
+                class="card-glow"></div>
+            </div>
+
+            <div class="value-card"
+              style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 1.5rem; transition: var(--transition); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; overflow: hidden; group;">
+              <div class="value-icon"
+                style="width: 40px; height: 40px; border-radius: 10px; background: rgba(200,169,107,0.15); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1rem; transition: var(--transition);">
+                <i class="fa-solid fa-children"></i>
+              </div>
+              <h4
+                style="font-size: 1rem; font-weight: 700; color: var(--ivory); margin-bottom: 0.5rem; transition: var(--transition);">
+                Child-Centric</h4>
+              <p style="font-size: 0.85rem; color: var(--gray-text); line-height: 1.6; margin: 0;">Always keeping the
+                best interests and future stability of your children at the forefront.</p>
+              <div
+                style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--gold); filter: blur(40px); opacity: 0; transition: var(--transition);"
+                class="card-glow"></div>
+            </div>
+
+            <div class="value-card"
+              style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 1.5rem; transition: var(--transition); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; overflow: hidden; group;">
+              <div class="value-icon"
+                style="width: 40px; height: 40px; border-radius: 10px; background: rgba(200,169,107,0.15); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1rem; transition: var(--transition);">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <h4
+                style="font-size: 1rem; font-weight: 700; color: var(--ivory); margin-bottom: 0.5rem; transition: var(--transition);">
+                Absolute Discretion</h4>
+              <p style="font-size: 0.85rem; color: var(--gray-text); line-height: 1.6; margin: 0;">Maintaining the
+                highest level of privacy and confidentiality throughout your case.</p>
+              <div
+                style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--gold); filter: blur(40px); opacity: 0; transition: var(--transition);"
+                class="card-glow"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTATE PLANNING DEEP DIVE -->
+  <section style="padding:3rem 0;background:var(--navy);">
+    <div class="container">
+      <div class="deep-dive" style="direction:rtl;">
+        <div class="fade-in-right" style="direction:ltr;">
+          <div class="deep-dive-img">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop"
+              alt="Estate Planning" />
+          </div>
+        </div>
+        <div class="fade-in-left" style="direction:ltr;">
+          <span class="section-label">In Focus</span>
+          <h2 class="section-title">Estate Planning That Endures</h2>
+          <div class="section-divider left"></div>
+          <p style="color:var(--gray-text);line-height:1.9;font-size:0.95rem;margin-bottom:2rem;">
+            A well-crafted estate plan is one of the most important gifts you can give your family. Attorney Reddy
+            designs plans that minimize tax burden, avoid probate delays, and ensure your exact wishes are carried out.
+          </p>
+
+          <div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">
+                <h4>Do I need a trust if I already have a will?</h4>
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <div class="faq-a">While a will is essential, a trust offers additional benefits â€” avoiding probate,
+                providing for minor children, managing assets if you become incapacitated, and offering tax advantages.
+                Many comprehensive estate plans include both.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">
+                <h4>What happens if I die without a will in India?</h4>
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <div class="faq-a">If you die intestate (without a will), your assets are distributed according to the
+                Hindu Succession Act or the Indian Succession Act â€” which may not align with your wishes. This can cause
+                family disputes and costly probate proceedings.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')">
+                <h4>How often should I update my estate plan?</h4>
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <div class="faq-a">Review your estate plan after major life events: marriage, divorce, birth of a child,
+                significant asset changes, or the death of a beneficiary. We recommend a full review every 3â€“5 years
+                regardless.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR PROCESS -->
+  <section style="padding:3rem 0;background:var(--navy-mid);">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">How We Work</span>
+        <h2 class="section-title">Our Process</h2>
+        <div class="section-divider"></div>
+        <p style="color:var(--gray-text);max-width:500px;margin:0 auto;font-size:0.95rem;line-height:1.8;">
+          A clear, structured approach â€” so you always know where you stand and what comes next.
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:0 auto;">
+        <div class="glass-card process-step fade-in delay-1">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Free Initial Consultation</h4>
+            <p>We discuss your situation, listen carefully, and provide an honest assessment of your legal options â€” at
+              no cost.</p>
+          </div>
+        </div>
+        <div class="glass-card process-step fade-in delay-2">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Case Strategy Development</h4>
+            <p>Attorney Reddy personally builds a customized legal strategy tailored to your goals and the specific
+              facts of your case.</p>
+          </div>
+        </div>
+        <div class="glass-card process-step fade-in delay-3">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Retainer Agreement &amp; Portal Setup</h4>
+            <p>We establish a clear fee arrangement and set up your secure client portal for document sharing and
+              communication.</p>
+          </div>
+        </div>
+        <div class="glass-card process-step fade-in delay-4">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Active Legal Representation</h4>
+            <p>We handle filings, court appearances, negotiations, and everything in between â€” keeping you informed at
+              every step.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box fade-in">
+        <span class="section-label">Get Started</span>
+        <h2>Discuss Your Legal Needs<br /><span class="gold-text">Confidentially</span></h2>
+        <p>Every case begins with a free, no-obligation consultation. Let us help you understand your rights and your
+          options.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-gold"><i class="fa-solid fa-calendar-check"></i> Schedule Free
+            Consultation</a>
+          <a href="about.html" class="btn btn-outline">Meet the Attorney</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+            <div class="nav-logo-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div>
+              <div class="nav-logo-text">
+                <h2 style="font-family:var(--font-heading);font-weight:700;font-size:1.2rem;line-height:1;margin:0;">
+                  ATTORNEY</h2>
+              </div>
+              <div style="font-size:0.55rem;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;">LEGAL
+                CONSULTANT</div>
+            </div>
+          </div>
+          <p>Compassionate, strategic legal representation in Family Law and Estate Planning.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About the Attorney</a></li>
+            <li><a href="practice-areas.html">Practice Areas</a></li>
+            <li><a href="blog.html">Legal Insights</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="client-portal.html">Client Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Family Law</a></li>
+            <li><a href="#">Estate Planning</a></li>
+            <li><a href="#">Child Custody</a></li>
+            <li><a href="#">Probate Administration</a></li>
+            <li><a href="#">Mediation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Suite 204, Legal
+              Tower,<br />Hyderabad, Telangana 500001</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+919876543210"
+              style="color:var(--gray-text);">+91 987 654 3210</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:yashwanth@reddy-law.in"
+              style="color:var(--gray-text);">yashwanth@reddy-law.in</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Â© 2026 Y Sai Yashwanth Reddy, Attorney at Law. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

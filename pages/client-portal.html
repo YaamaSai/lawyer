@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATTORNEY</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 640%22><text y=%22520%22 font-size=%22520%22>⚖️</text></svg>">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body { background: var(--navy); overflow-x: clip; }
+
+    .sidebar-section-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gray-text);
+      padding: 0 1rem; margin: 1rem 0 0.4rem;
+    }
+
+    /* Overview section cards */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .overview-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-decoration: none;
+      transition: var(--transition);
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .overview-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .overview-card:hover {
+      border-color: rgba(200,169,107,0.35);
+      background: var(--glass-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .overview-card:hover::before { opacity: 1; }
+
+    .ov-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(200,169,107,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .ov-title {
+      font-size: 1rem; font-weight: 700; color: var(--ivory); margin-bottom: 0.4rem;
+    }
+    .ov-desc {
+      font-size: 0.8rem; color: var(--gray-text); line-height: 1.6; margin-bottom: 1rem;
+    }
+    .ov-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.72rem;
+    }
+    .ov-badge {
+      padding: 0.2rem 0.6rem; border-radius: 20px;
+      font-size: 0.68rem; font-weight: 600;
+    }
+    .ov-badge.green { background: rgba(16,185,129,0.1); color: var(--green); }
+    .ov-badge.gold  { background: rgba(200,169,107,0.1); color: var(--gold); }
+    .ov-badge.blue  { background: rgba(59,130,246,0.1);  color: var(--blue); }
+    .ov-badge.warn  { background: rgba(245,158,11,0.1);  color: #F59E0B; }
+    .ov-arrow { color: var(--gray-text); font-size: 0.8rem; transition: var(--transition); }
+    .overview-card:hover .ov-arrow { color: var(--gold); transform: translateX(4px); }
+
+    .progress-track { width:100%; height:5px; background:var(--glass-border); border-radius:3px; overflow:hidden; margin-top:0.5rem; }
+    .progress-fill { height:100%; border-radius:3px; background:linear-gradient(90deg,var(--gold-dark),var(--gold-light)); }
+
+    /* Quick summary bar */
+    .summary-bar {
+      display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.5rem;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .summary-item { display: flex; align-items: center; gap: 0.6rem; }
+    .summary-item i { color: var(--gold); font-size: 0.85rem; }
+    .summary-item span { font-size: 0.8rem; color: var(--gray-text); }
+    .summary-item strong { color: var(--ivory); }
+  </style>
+</head>
+<body>
+  <div id="cursor-glow"></div>
+  <div class="portal-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html" class="nav-logo" style="text-decoration: none;">
+          <div class="nav-logo-icon" style="color: #ffffff;"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="nav-logo-text">
+            <h2 style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 0.05em; font-weight: 700; color: inherit; margin: 0; line-height: 1.2;">ATTORNEY</h2><span style="font-family: var(--font-body); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin: 0;">LEGAL CONSULTANT</span>
+          </div>
+        </a>
+      </div>
+      
+      <button class="mobile-close-btn" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Main</div>
+        <a href="client-portal.html" class="sidebar-link active">
+          <i class="fa-solid fa-border-all"></i> Dashboard
+        </a>
+        <a href="portal-documents.html" class="sidebar-link">
+          <i class="fa-solid fa-folder-open"></i> Case Documents
+        </a>
+        <a href="portal-messages.html" class="sidebar-link">
+          <i class="fa-solid fa-message"></i> Secure Messages
+          <span class="sidebar-badge">2</span>
+        </a>
+        <div class="sidebar-section-label">Billing</div>
+        <a href="portal-payments.html" class="sidebar-link">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Invoices &amp; Payments
+        </a>
+        <div class="sidebar-section-label">Scheduling</div>
+        <a href="portal-appointments.html" class="sidebar-link">
+          <i class="fa-solid fa-calendar-check"></i> Appointments
+        </a>
+        <div class="sidebar-section-label">Account</div>
+        <a href="portal-settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Account Settings</a>
+      </nav>
+        <div class="sidebar-appearance" style="margin-top:auto;">
+          <div class="sidebar-section-label" style="margin-top:0;">Appearance</div>
+          <div style="padding: 0 1rem; display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <button class="btn btn-ghost rtl-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);">RTL</button>
+            <button class="btn btn-ghost theme-toggle-btn" style="flex:1;padding:0.5rem 0;font-weight:600;justify-content:center;border:1px solid var(--glass-border);"><i class="fa-solid fa-moon"></i> Dark</button>
+          </div>
+        </div>
+
+      <div class="sidebar-bottom">
+        <a href="index.html" class="sidebar-link" style="color:var(--gray-text);">
+          <i class="fa-solid fa-right-from-bracket"></i> Secure Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="portal-main">
+
+      <!-- Top Bar -->
+      <div class="portal-topbar">
+        <div class="portal-topbar-left">
+          <button class="btn btn-ghost mobile-menu-btn" style="display:none;font-size:1.2rem;padding:0.4rem;margin-right:0.5rem;"><i class="fa-solid fa-bars"></i></button>
+          <h1>Dashboard</h1>
+        </div>
+        <div class="portal-topbar-right">
+            <div class="topbar-separator"></div>
+          <div class="topbar-avatar">
+            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=100&auto=format&fit=crop" alt="Client" />
+          </div>
+            <i class="fa-solid fa-chevron-down avatar-chevron"></i>
+        </div>
+      </div>
+
+      <!-- Quick Summary Bar -->
+      <div class="summary-bar">
+        <div class="summary-item"><i class="fa-solid fa-scale-balanced"></i><span>Case: <strong>FC/2026/3847</strong></span></div>
+        <div class="summary-item"><i class="fa-solid fa-gavel"></i><span>Phase: <strong>Discovery</strong></span></div>
+        <div class="summary-item"><i class="fa-solid fa-calendar"></i><span>Next Hearing: <strong>Jul 15, 2026</strong></span></div>
+        <div class="summary-item"><i class="fa-solid fa-file"></i><span>Documents: <strong>12 files</strong></span></div>
+        <div class="summary-item"><i class="fa-solid fa-envelope"></i><span>Messages: <strong>2 unread</strong></span></div>
+      </div>
+
+      <!-- Overview Cards -->
+      <p style="font-size:0.72rem;color:var(--gray-text);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;">QUICK ACCESS</p>
+      <div class="overview-grid">
+
+        <!-- Case Progress -->
+        <a href="client-portal.html" class="overview-card">
+          <div class="ov-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="ov-title">Case Progress</div>
+          <div class="ov-desc">Discovery Phase &mdash; Phase 3 of 6. Interrogatories received, responses due Jun 12.</div>
+          <div class="progress-track"><div class="progress-fill" style="width:55%;"></div></div>
+          <div class="ov-meta" style="margin-top:0.75rem;">
+            <span class="ov-badge green"><i class="fa-solid fa-circle-check"></i> On Schedule</span>
+            <span class="ov-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <!-- Documents -->
+        <a href="portal-documents.html" class="overview-card">
+          <div class="ov-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <div class="ov-title">Case Documents</div>
+          <div class="ov-desc">12 files in your secure vault. Upload, view, and download legal documents.</div>
+          <div class="ov-meta">
+            <span class="ov-badge gold">4 added this month</span>
+            <span class="ov-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <!-- Appointments -->
+        <a href="portal-appointments.html" class="overview-card">
+          <div class="ov-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="ov-title">Appointments</div>
+          <div class="ov-desc">Next: Jun 14 at 3:00 PM &mdash; Virtual Consultation. Book or reschedule sessions.</div>
+          <div class="ov-meta">
+            <span class="ov-badge blue"><i class="fa-solid fa-video"></i> Virtual Ã‚Â· Jun 14</span>
+            <span class="ov-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <!-- Payments -->
+        <a href="portal-payments.html" class="overview-card">
+          <div class="ov-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <div class="ov-title">Invoices &amp; Payments</div>
+          <div class="ov-desc">Retainer balance: 1,54,500. One payment of 1,50,000 due on Jun 20.</div>
+          <div class="ov-meta">
+            <span class="ov-badge warn"><i class="fa-solid fa-clock"></i> Due Jun 20</span>
+            <span class="ov-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <!-- Messages -->
+        <a href="portal-messages.html" class="overview-card">
+          <div class="ov-icon"><i class="fa-solid fa-message"></i></div>
+          <div class="ov-title">Secure Messages</div>
+          <div class="ov-desc">2 unread messages from your attorney regarding interrogatory responses.</div>
+          <div class="ov-meta">
+            <span class="ov-badge gold">2 unread</span>
+            <span class="ov-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <!-- Retainer -->
+        <a href="portal-payments.html" class="overview-card">
+          <div class="ov-icon"><i class="fa-solid fa-credit-card"></i></div>
+          <div class="ov-title">Retainer Account</div>
+          <div class="ov-desc">Retainer renewal in 12 days. Current balance covers ongoing case costs.</div>
+          <div class="progress-track"><div class="progress-fill" style="width:38%;"></div></div>
+          <div class="ov-meta" style="margin-top:0.75rem;">
+            <span class="ov-badge warn">Renewal due</span>
+            <span class="ov-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if(mobileBtn){
+      mobileBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.toggle('mobile-active');
+      });
+    }
+    const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+    if(mobileCloseBtn){
+      mobileCloseBtn.addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.remove('mobile-active');
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
